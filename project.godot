@@ -32,6 +32,10 @@ folder_colors={
 "res://Scripts/": "purple"
 }
 
+[rendering]
+
+scaling_3d/scale=0.65
+
 [xr]
 
 openxr/enabled=true
