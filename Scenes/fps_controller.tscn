@@ -1,13 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://imyocjyp22p2"]
+[gd_scene load_steps=5 format=3 uid="uid://imyocjyp22p2"]
 
 [ext_resource type="Script" path="res://Scripts/fps_controller.gd" id="1_re5c7"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f6ihl"]
-albedo_color = Color(0.439216, 0.176471, 1, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_6pqfu"]
-material = SubResource("StandardMaterial3D_f6ihl")
-size = Vector3(0.35, 0.35, 1.16)
+[ext_resource type="ArrayMesh" uid="uid://vtjliblqogef" path="res://Assets/Models/shotgun/Usable Meshes/escopeta_Cube_002.res" id="2_3hv63"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ns2d4"]
 
@@ -20,13 +14,15 @@ mouse_sensitivity = 0.355
 [node name="XPivot" type="Node3D" parent="."]
 unique_name_in_owner = true
 
+[node name="EscopetaCube002" type="MeshInstance3D" parent="XPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.153, 0.381, -0.511)
+mesh = ExtResource("2_3hv63")
+skeleton = NodePath("../..")
+
 [node name="Camera3D" type="Camera3D" parent="XPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55094, 0)
 current = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="XPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22, 0.175, -0.675)
-mesh = SubResource("BoxMesh_6pqfu")
+fov = 55.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_ns2d4")
