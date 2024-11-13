@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://bv3q4qx2vsd4u"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_oacss"]
+[ext_resource type="Material" uid="uid://bx6qeabdhq2s" path="res://addons/kenney_prototype_tools/materials/dark/material_01.tres" id="1_v7lbm"]
+[ext_resource type="PackedScene" uid="uid://dbv58oymyvhax" path="res://Scenes/xr_origin_3d.tscn" id="2_cwg4q"]
+[ext_resource type="PackedScene" uid="uid://cq10lbaasnp4r" path="res://Scenes/pumpkin_simple.tscn" id="4_3nl3f"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bnwfv"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_kogdk"]
+sky_material = SubResource("ProceduralSkyMaterial_bnwfv")
+
+[sub_resource type="Environment" id="Environment_54fll"]
+background_mode = 2
+sky = SubResource("Sky_kogdk")
+tonemap_mode = 2
+glow_enabled = true
+adjustment_enabled = true
+adjustment_contrast = 1.15
+adjustment_saturation = 1.15
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_oacss")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_54fll")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+material_override = ExtResource("1_v7lbm")
+size = Vector3(30, 0.394, 30)
+material = ExtResource("1_v7lbm")
+
+[node name="XROrigin3D" parent="." instance=ExtResource("2_cwg4q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.53674e-07, 1.01687, 7.59434)
+
+[node name="pumpkin simple" parent="." instance=ExtResource("4_3nl3f")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.13682, 0.8, -4.77791)
+
+[node name="pumpkin simple2" parent="." instance=ExtResource("4_3nl3f")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.4153, 0.8, 1.65147)
+
+[node name="pumpkin simple3" parent="." instance=ExtResource("4_3nl3f")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0991888, 0.8, 0.506477)
+
+[node name="pumpkin simple4" parent="." instance=ExtResource("4_3nl3f")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.26865, 0.8, -4.09488)
+
+[node name="pumpkin simple5" parent="." instance=ExtResource("4_3nl3f")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.707333, 0.799999, -3.45696)
+
+[node name="pumpkin simple6" parent="." instance=ExtResource("4_3nl3f")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.42956, 0.8, -1.00276)
+
+[node name="pumpkin simple7" parent="." instance=ExtResource("4_3nl3f")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.51115, 0.8, 1.17661)
+
+[node name="pumpkin simple8" parent="." instance=ExtResource("4_3nl3f")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.00974, 0.8, -1.82567)
+
+[node name="pumpkin simple9" parent="." instance=ExtResource("4_3nl3f")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.15611, 0.8, -1.20982)
