@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsvknykpav38t"]
+
+[ext_resource type="Script" path="res://Scripts/shotgun.gd" id="1_025rv"]
+[ext_resource type="PackedScene" uid="uid://dli43ddpmgo0b" path="res://Scenes/shot.tscn" id="2_7sxvm"]
+[ext_resource type="ArrayMesh" uid="uid://vtjliblqogef" path="res://Assets/Models/shotgun/Usable Meshes/escopeta_Cube_002.res" id="2_11xgw"]
+
+[node name="Shotgun" type="Node3D"]
+script = ExtResource("1_025rv")
+bullet = ExtResource("2_7sxvm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_11xgw")
+
+[node name="BulletOrigin" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.103144, -0.709805)
+
+[node name="ShootingOrigin" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.103144, -0.0564606)

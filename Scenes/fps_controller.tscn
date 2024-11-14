@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://imyocjyp22p2"]
 
 [ext_resource type="Script" path="res://Scripts/fps_controller.gd" id="1_re5c7"]
-[ext_resource type="ArrayMesh" uid="uid://vtjliblqogef" path="res://Assets/Models/shotgun/Usable Meshes/escopeta_Cube_002.res" id="2_3hv63"]
+[ext_resource type="PackedScene" uid="uid://dsvknykpav38t" path="res://Scenes/shotgun.tscn" id="2_0ehii"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ns2d4"]
 
@@ -9,15 +9,13 @@
 
 [node name="FPSController" type="CharacterBody3D"]
 script = ExtResource("1_re5c7")
-mouse_sensitivity = 0.355
+mouse_sensitivity = 0.2
 
 [node name="XPivot" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="EscopetaCube002" type="MeshInstance3D" parent="XPivot"]
+[node name="Shotgun" parent="XPivot" instance=ExtResource("2_0ehii")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.153, 0.381, -0.511)
-mesh = ExtResource("2_3hv63")
-skeleton = NodePath("../..")
 
 [node name="Camera3D" type="Camera3D" parent="XPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55094, 0)
