@@ -27,7 +27,6 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		print('Getting mouse input')
 		var event_relative: Vector2 = (event.relative * 500 / get_viewport().size.y) * Vector2(1,0.5)
 		rotate_and_displace(event_relative)
 

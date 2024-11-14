@@ -1,13 +1,9 @@
 extends Node3D
 
-@export var intensity: float = 8.0
-
-func _ready() -> void:
+func explode(impulse_position: Vector3, impulse_intensity: float) -> void:
+	print('impulse position on explode:',impulse_position,', global_position:',global_position)
 	for pieces: RigidBody3D in get_children():
-		pieces.apply_impulse(
-			pieces.get_child(0).position * intensity,
-			global_position + Vector3(randf_range(-0.1,0.1),randf_range(-0.05,0.05), randf_range(-0.1,0.1))
-			)
-	
+		pieces.apply_impulse(pieces.get_child(0).position * impulse_intensity)
+
 	await get_tree().create_timer(5).timeout
 	queue_free()

@@ -1425,7 +1425,6 @@ points = PackedVector3Array(0.000623539, -0.153595, -0.263036, -0.0777233, -0.14
 
 [node name="pumpkin pieces" type="Node3D"]
 script = ExtResource("1_oxojj")
-intensity = 12.0
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 
