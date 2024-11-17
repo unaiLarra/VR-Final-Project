@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://imyocjyp22p2"]
+[gd_scene load_steps=8 format=3 uid="uid://imyocjyp22p2"]
 
 [ext_resource type="Script" path="res://Scripts/fps_controller.gd" id="1_re5c7"]
 [ext_resource type="PackedScene" uid="uid://dsvknykpav38t" path="res://Scenes/shotgun.tscn" id="2_0ehii"]
@@ -6,6 +6,68 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ns2d4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lqkh8"]
+
+[sub_resource type="Animation" id="Animation_kcx8x"]
+resource_name = "ADS"
+length = 0.125
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("XPivot/Weapons/Shotgun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Vector3(0.153, 0.381, -0.511), Vector3(0, 0.43, -0.511)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("XPivot/Weapons/Shotgun:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dgw2v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("XPivot/Weapons/Shotgun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.153, 0.381, -0.511)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("XPivot/Weapons/Shotgun:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_57vp1"]
+_data = {
+"ADS": SubResource("Animation_kcx8x"),
+"RESET": SubResource("Animation_dgw2v")
+}
 
 [node name="FPSController" type="CharacterBody3D"]
 collision_layer = 0
@@ -16,16 +78,25 @@ mouse_sensitivity = 0.2
 [node name="XPivot" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="Shotgun" parent="XPivot" instance=ExtResource("2_0ehii")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.153, 0.381, -0.511)
-
 [node name="Camera3D" type="Camera3D" parent="XPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55094, 0)
 current = true
 fov = 55.0
+
+[node name="Weapons" type="Node3D" parent="XPivot"]
+unique_name_in_owner = true
+
+[node name="Shotgun" parent="XPivot/Weapons" instance=ExtResource("2_0ehii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.153, 0.381, -0.511)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_ns2d4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_lqkh8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_57vp1")
+}

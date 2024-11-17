@@ -25,6 +25,13 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+	if Input.is_action_just_pressed("right_click"):
+		%AnimationPlayer.play("ADS")
+	if Input.is_action_just_released("right_click"):
+		%AnimationPlayer.play_backwards("ADS")
+	if Input.is_action_just_pressed("left_click"):
+		%Weapons.get_child(0).shoot()
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var event_relative: Vector2 = (event.relative * 500 / get_viewport().size.y) * Vector2(1,0.5)

@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://imyocjyp22p2" path="res://Scenes/fps_controller.tscn" id="3_mirw0"]
 [ext_resource type="PackedScene" uid="uid://cq10lbaasnp4r" path="res://Scenes/pumpkin_simple.tscn" id="4_3nl3f"]
 [ext_resource type="Script" path="res://Scripts/projectile_manager.gd" id="5_2ticr"]
+[ext_resource type="Material" uid="uid://dv8yeslwdnoa7" path="res://addons/kenney_prototype_tools/materials/orange/material_08.tres" id="5_mg5hh"]
+[ext_resource type="PackedScene" uid="uid://dsvknykpav38t" path="res://Scenes/shotgun.tscn" id="8_025w2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bnwfv"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -23,13 +25,6 @@ adjustment_enabled = true
 adjustment_contrast = 1.15
 adjustment_saturation = 1.15
 
-[sub_resource type="SphereMesh" id="SphereMesh_n16a8"]
-radius = 2.0
-height = 4.0
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_jd2pw"]
-radius = 2.0
-
 [node name="Main" type="Node3D"]
 script = ExtResource("1_oacss")
 xr_controller = ExtResource("2_cwg4q")
@@ -44,16 +39,21 @@ environment = SubResource("Environment_54fll")
 
 [node name="SpawnPosition" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 1.4729, 6.58505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 1.65633, 11.668)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, -63.4233)
 material_override = ExtResource("1_v7lbm")
-size = Vector3(30, 0.394, 30)
+size = Vector3(30, 0.394, 156.847)
 material = ExtResource("1_v7lbm")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0130825, 0.284252, 8.82599)
+size = Vector3(11.7676, 1.54596, 1)
+material = ExtResource("5_mg5hh")
 
 [node name="ProjectileManager" type="Node3D" parent="."]
 script = ExtResource("5_2ticr")
@@ -67,13 +67,5 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.4153
 [node name="pumpkin simple3" parent="." instance=ExtResource("4_3nl3f")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0991888, 0.8, 0.506477)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.33209, 0)
-mesh = SubResource("SphereMesh_n16a8")
-
-[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
-shape = SubResource("SphereShape3D_jd2pw")
+[node name="Shotgun" parent="." instance=ExtResource("8_025w2")]
+transform = Transform3D(-3.09086e-08, -0.707107, 0.707107, 1, -4.37114e-08, 0, 3.09086e-08, 0.707107, 0.707107, 1.53666, 1.09546, 8.90989)
