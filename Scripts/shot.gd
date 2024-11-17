@@ -7,7 +7,7 @@ const JUMP_VELOCITY = 4.5
 var velocity := Vector3.ZERO
 
 func _ready() -> void:
-	await get_tree().create_timer(6).timeout
+	await get_tree().create_timer(4).timeout
 
 func _physics_process(delta: float) -> void:
 	velocity -= Vector3(0,get_gravity() * delta,0)
@@ -17,7 +17,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_entered(area: Area3D) -> void:
 	if area is Pumpkin:
-		var impulse_position = -velocity * 0.03
-		print('impulse position:',impulse_position,' area_position:',area.global_position)
-		area.explode(impulse_position, velocity.length() * 0.2)
+		var impulse_position = velocity * 0.008
+		area.explode(impulse_position, velocity.length() * 0.14)
 	queue_free()

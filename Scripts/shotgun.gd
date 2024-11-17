@@ -5,11 +5,11 @@ extends Node3D
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("left_click"):
-		print('Shooting!')
 		shoot()
 
 func shoot() -> void:
 	var direction: Vector3 = %BulletOrigin.global_position - %ShootingOrigin.global_position
 	direction = direction.normalized()
 	SignalBus.shoot_projectile.emit(%BulletOrigin.global_position, direction * shot_velocity, bullet)
-	print('Direction: ',direction)
+	%AnimationPlayer.play("Shoot")
+	%GPUParticles3D.restart()

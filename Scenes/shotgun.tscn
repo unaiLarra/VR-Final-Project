@@ -1,13 +1,146 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsvknykpav38t"]
+[gd_scene load_steps=15 format=3 uid="uid://dsvknykpav38t"]
 
 [ext_resource type="Script" path="res://Scripts/shotgun.gd" id="1_025rv"]
 [ext_resource type="PackedScene" uid="uid://dli43ddpmgo0b" path="res://Scenes/shot.tscn" id="2_7sxvm"]
 [ext_resource type="ArrayMesh" uid="uid://vtjliblqogef" path="res://Assets/Models/shotgun/Usable Meshes/escopeta_Cube_002.res" id="2_11xgw"]
+[ext_resource type="Texture2D" uid="uid://cm2l4uwp11up0" path="res://Assets/Models/Textures/sharp_circle.png" id="4_pnd50"]
+
+[sub_resource type="Animation" id="Animation_b3i7i"]
+resource_name = "Shoot"
+length = 0.25
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.25),
+"transitions": PackedFloat32Array(1, 1, 2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.07), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.25),
+"transitions": PackedFloat32Array(1, 1, 2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.10472, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshInstance3D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.2),
+"transitions": PackedFloat32Array(1, 1, 2),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.2, 1, 0.8), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5pfxa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshInstance3D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8v8mg"]
+_data = {
+"RESET": SubResource("Animation_5pfxa"),
+"Shoot": SubResource("Animation_b3i7i")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qx4yk"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_pnd50")
+
+[sub_resource type="Curve" id="Curve_my52j"]
+_data = [Vector2(0, 0.846154), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_m8mig"]
+max_value = 5.0
+_data = [Vector2(0, 3.2967), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_k3a4i"]
+_data = [Vector2(0, 0.846154), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_rx6jw"]
+curve_x = SubResource("Curve_my52j")
+curve_y = SubResource("Curve_m8mig")
+curve_z = SubResource("Curve_k3a4i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_72377"]
+particle_flag_align_y = true
+emission_shape = 1
+emission_sphere_radius = 0.1
+direction = Vector3(0, 0, -1)
+spread = 30.0
+initial_velocity_min = 20.0
+initial_velocity_max = 25.0
+scale_min = 0.1
+scale_max = 0.3
+scale_curve = SubResource("CurveXYZTexture_rx6jw")
+color = Color(5, 2, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_42mmq"]
 
 [node name="Shotgun" type="Node3D"]
 script = ExtResource("1_025rv")
 bullet = ExtResource("2_7sxvm")
 shot_velocity = 60.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_8v8mg")
+}
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("2_11xgw")
@@ -19,3 +152,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.103144, -0.709805)
 [node name="ShootingOrigin" type="Marker3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.103144, -0.0564606)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 5.96046e-08, 0.102046, -0.706681)
+material_override = SubResource("StandardMaterial3D_qx4yk")
+emitting = false
+amount = 12
+lifetime = 0.35
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_72377")
+draw_pass_1 = SubResource("QuadMesh_42mmq")

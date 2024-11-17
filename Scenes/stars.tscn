@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://cgfwfio433l84"]
+
+[ext_resource type="Shader" uid="uid://b8d8xkcl2qioi" path="res://Resources/star_shader.tres" id="1_oyvb4"]
+[ext_resource type="Texture2D" uid="uid://dqxfos8cf7jsg" path="res://Assets/Models/Textures/T_flare81.png" id="2_yisti"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6vjol"]
+render_priority = 0
+shader = ExtResource("1_oyvb4")
+shader_parameter/Star_Texture = ExtResource("2_yisti")
+
+[sub_resource type="Curve" id="Curve_m8fbt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3jpx8"]
+curve = SubResource("Curve_m8fbt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r118c"]
+angle_min = 45.0
+angle_max = 45.0
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_3jpx8")
+
+[sub_resource type="QuadMesh" id="QuadMesh_1gykb"]
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+material_override = SubResource("ShaderMaterial_6vjol")
+amount = 1
+lifetime = 0.7
+process_material = SubResource("ParticleProcessMaterial_r118c")
+draw_pass_1 = SubResource("QuadMesh_1gykb")
