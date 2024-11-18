@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cq10lbaasnp4r" path="res://Scenes/pumpkin_simple.tscn" id="4_3nl3f"]
 [ext_resource type="Script" path="res://Scripts/projectile_manager.gd" id="5_2ticr"]
 [ext_resource type="Material" uid="uid://dv8yeslwdnoa7" path="res://addons/kenney_prototype_tools/materials/orange/material_08.tres" id="5_mg5hh"]
-[ext_resource type="PackedScene" uid="uid://dsvknykpav38t" path="res://Scenes/shotgun.tscn" id="8_025w2"]
+[ext_resource type="PackedScene" uid="uid://btg7dswluaru7" path="res://Scenes/pickable_shotgun.tscn" id="8_bia2o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bnwfv"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -67,5 +67,11 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.4153
 [node name="pumpkin simple3" parent="." instance=ExtResource("4_3nl3f")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0991888, 0.8, 0.506477)
 
-[node name="Shotgun" parent="." instance=ExtResource("8_025w2")]
+[node name="pumpkin simple4" parent="." instance=ExtResource("4_3nl3f")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0991888, 0.8, -40.5927)
+
+[node name="pumpkin simple5" parent="." instance=ExtResource("4_3nl3f")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0991888, 0.8, -78.9804)
+
+[node name="PickableObject" parent="." instance=ExtResource("8_bia2o")]
 transform = Transform3D(-3.09086e-08, -0.707107, 0.707107, 1, -4.37114e-08, 0, 3.09086e-08, 0.707107, 0.707107, 1.53666, 1.09546, 8.90989)

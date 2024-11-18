@@ -17,6 +17,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_entered(area: Area3D) -> void:
 	if area is Pumpkin:
-		var impulse_position = velocity * 0.008
+		var impulse_position = velocity * 0.009
 		area.explode(impulse_position, velocity.length() * 0.14)
 	queue_free()

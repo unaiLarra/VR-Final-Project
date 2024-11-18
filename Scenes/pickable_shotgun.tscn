@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://btg7dswluaru7"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_eabhw"]
+[ext_resource type="PackedScene" uid="uid://dsvknykpav38t" path="res://Scenes/shotgun.tscn" id="2_7guwn"]
+[ext_resource type="Shape3D" uid="uid://cymak06vub1dk" path="res://Resources/shotgun_collision_shape.tres" id="3_l4ekr"]
+[ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="4_03x4m"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="5_6ge71"]
+[ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="5_cixqh"]
+
+[sub_resource type="Resource" id="Resource_tqlbc"]
+script = ExtResource("5_6ge71")
+
+[node name="PickableObject" instance=ExtResource("1_eabhw")]
+
+[node name="Shotgun" parent="." index="0" instance=ExtResource("2_7guwn")]
+
+[node name="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.62444e-05, 0.000435457)
+shape = ExtResource("3_l4ekr")
+
+[node name="GrabPointHandRight" parent="." index="2" instance=ExtResource("4_03x4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00671085, 0.077, -0.048)
+hand_pose = SubResource("Resource_tqlbc")
+
+[node name="GrabPointHandLeft" parent="." index="3" instance=ExtResource("5_cixqh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.007, 0.077, -0.048)
+
+[connection signal="action_pressed" from="." to="Shotgun" method="_on_pickable_object_action_pressed"]
+
+[editable path="Shotgun"]
