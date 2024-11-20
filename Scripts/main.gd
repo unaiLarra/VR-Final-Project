@@ -16,6 +16,7 @@ func _ready() -> void:
 		var xr_controller_instance = xr_controller.instantiate()
 		add_child(xr_controller_instance)
 		xr_controller_instance.global_position = %SpawnPosition.global_position
+		get_viewport().use_xr = true
 	else:
 		printerr("OpenXR not initialized, starting game with normal controller")
 		var normal_controller_instance = normal_controller.instantiate()

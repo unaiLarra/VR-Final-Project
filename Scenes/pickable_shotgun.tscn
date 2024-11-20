@@ -16,6 +16,7 @@ script = ExtResource("5_6ge71")
 
 [node name="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.62444e-05, 0.000435457)
+visible = false
 shape = ExtResource("3_l4ekr")
 
 [node name="GrabPointHandRight" parent="." index="2" instance=ExtResource("4_03x4m")]

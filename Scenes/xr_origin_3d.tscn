@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbv58oymyvhax"]
+[gd_scene load_steps=7 format=3 uid="uid://dbv58oymyvhax"]
 
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="1_w0axp"]
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="2_3mkat"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="2_tp77t"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="3_e1cml"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_soqq5"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/player/player_body.gd" id="6_bqyic"]
 
 [node name="XROrigin3D" type="XROrigin3D"]
 
@@ -15,9 +18,20 @@ tracker = &"left_hand"
 
 [node name="FunctionPickup" parent="LeftHand" instance=ExtResource("2_tp77t")]
 
+[node name="MovementDirect" parent="LeftHand" instance=ExtResource("3_e1cml")]
+strafe = true
+
 [node name="RightHand" type="XRController3D" parent="."]
 tracker = &"right_hand"
 
 [node name="RightHand" parent="RightHand" instance=ExtResource("2_3mkat")]
 
 [node name="FunctionPickup" parent="RightHand" instance=ExtResource("2_tp77t")]
+
+[node name="PlayerBody" type="CharacterBody3D" parent="." groups=["player_body"] instance=ExtResource("5_soqq5")]
+process_priority = -100
+process_physics_priority = -100
+top_level = true
+collision_layer = 524288
+collision_mask = 1023
+script = ExtResource("6_bqyic")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bv3q4qx2vsd4u"]
+[gd_scene load_steps=14 format=3 uid="uid://bv3q4qx2vsd4u"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_oacss"]
 [ext_resource type="Material" uid="uid://bx6qeabdhq2s" path="res://addons/kenney_prototype_tools/materials/dark/material_01.tres" id="1_v7lbm"]
@@ -9,6 +9,7 @@
 [ext_resource type="Material" uid="uid://dv8yeslwdnoa7" path="res://addons/kenney_prototype_tools/materials/orange/material_08.tres" id="5_mg5hh"]
 [ext_resource type="Material" uid="uid://d0hicg0fjb7jg" path="res://addons/kenney_prototype_tools/materials/green/material_08.tres" id="6_of8sc"]
 [ext_resource type="PackedScene" uid="uid://btg7dswluaru7" path="res://Scenes/pickable_shotgun.tscn" id="8_bia2o"]
+[ext_resource type="PackedScene" uid="uid://cpmner8e001xm" path="res://Scenes/pickable_pistol.tscn" id="10_6j646"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bnwfv"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -84,3 +85,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0991
 
 [node name="PickableObject" parent="." instance=ExtResource("8_bia2o")]
 transform = Transform3D(-3.09086e-08, -0.707107, 0.707107, 1, -4.37114e-08, 0, 3.09086e-08, 0.707107, 0.707107, 1.53666, 1.09546, 8.90989)
+
+[node name="PickableObject2" parent="." instance=ExtResource("10_6j646")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.698253, 1.20149, 8.96146)

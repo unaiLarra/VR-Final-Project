@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://cn5iqud7ia78x"]
+[gd_scene load_steps=15 format=3 uid="uid://b3lv81bp2w3p"]
 
 [ext_resource type="Script" path="res://Scripts/shotgun.gd" id="1_62rpc"]
 [ext_resource type="PackedScene" uid="uid://dli43ddpmgo0b" path="res://Scenes/shot.tscn" id="2_gpfsw"]
 [ext_resource type="ArrayMesh" uid="uid://b0fyv8343kft0" path="res://Assets/Models/pistol/Usable Meshes/pistol_Cube_001.res" id="3_wrcmq"]
-[ext_resource type="Shader" path="res://Scenes/shotgun.gdshader" id="4_yu3s3"]
 [ext_resource type="Texture2D" uid="uid://cm2l4uwp11up0" path="res://Assets/Models/Textures/sharp_circle.png" id="5_4yo62"]
 
 [sub_resource type="Animation" id="Animation_5pfxa"]
@@ -47,7 +46,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_b3i7i"]
 resource_name = "Shoot"
-length = 0.25
+length = 0.17
 step = 0.0125
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -56,10 +55,10 @@ tracks/0/path = NodePath("MeshInstance3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0625, 0.25),
-"transitions": PackedFloat32Array(1, 1, 2),
+"times": PackedFloat32Array(0, 0.0375, 0.1625),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0.07), Vector3(0, 0, 0.07), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0.0243169, 0.0240468), Vector3(0, 0.0243169, 0.0240468), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -68,22 +67,22 @@ tracks/1/path = NodePath("MeshInstance3D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0625, 0.25),
-"transitions": PackedFloat32Array(1, 1, 2),
+"times": PackedFloat32Array(0, 0.0375, 0.1625),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0.10472, 0, 0), Vector3(0.10472, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0.253073, 0, 0), Vector3(0.253073, 0, 0), Vector3(0, 0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/path = NodePath("MeshInstance3D:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0625, 0.2),
-"transitions": PackedFloat32Array(1, 1, 2),
+"times": PackedFloat32Array(0, 0.0375, 0.1625),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(1.2, 1, 0.8), Vector3(1.2, 1, 0.8), Vector3(1, 1, 1)]
+"values": [Vector3(1.225, 1, 0.87), Vector3(1.225, 1, 0.87), Vector3(1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8v8mg"]
@@ -91,14 +90,6 @@ _data = {
 "RESET": SubResource("Animation_5pfxa"),
 "Shoot": SubResource("Animation_b3i7i")
 }
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vlotp"]
-render_priority = 0
-shader = ExtResource("4_yu3s3")
-
-[sub_resource type="QuadMesh" id="QuadMesh_td1c8"]
-material = SubResource("ShaderMaterial_vlotp")
-size = Vector2(0.07, 0.07)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qx4yk"]
 transparency = 1
@@ -154,18 +145,13 @@ libraries = {
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("3_wrcmq")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.144285, 0)
-layers = 3
-mesh = SubResource("QuadMesh_td1c8")
-
 [node name="BulletOrigin" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0953823, -0.153549)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0812615, -0.105891)
 
 [node name="ShootingOrigin" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.095, 0.132)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0808792, 0.104641)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
