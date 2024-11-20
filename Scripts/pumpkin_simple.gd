@@ -1,4 +1,4 @@
-extends Area3D
+extends StaticBody3D
 class_name Pumpkin
 
 @export var broken_pumpkin: PackedScene

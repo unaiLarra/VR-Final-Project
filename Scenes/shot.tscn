@@ -14,9 +14,13 @@ height = 0.05
 [sub_resource type="SphereShape3D" id="SphereShape3D_rx3hf"]
 radius = 0.08
 
-[node name="Shot" type="Area3D"]
+[node name="Shot" type="RigidBody3D"]
+physics_interpolation_mode = 1
 collision_layer = 0
 collision_mask = 3
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_su207")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -25,4 +29,4 @@ mesh = SubResource("SphereMesh_21nk8")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_rx3hf")
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

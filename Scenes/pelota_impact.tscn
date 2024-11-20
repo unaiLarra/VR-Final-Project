@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqdx8v383hnh6"]
+[gd_scene load_steps=9 format=3 uid="uid://dqdx8v383hnh6"]
 
-[ext_resource type="Script" path="res://Scripts/VFX/pelota_impact.gd" id="1_bum4s"]
 [ext_resource type="Texture2D" uid="uid://cm2l4uwp11up0" path="res://Assets/Models/Textures/sharp_circle.png" id="2_muodv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pn0bj"]
@@ -23,7 +22,7 @@ point_count = 2
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_rx6jw"]
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_6ais0"]
 curve_x = SubResource("Curve_4tama")
 curve_y = SubResource("Curve_45rlo")
 curve_z = SubResource("Curve_4r3fh")
@@ -38,13 +37,12 @@ initial_velocity_max = 25.0
 gravity = Vector3(0, -20, 0)
 scale_min = 0.2
 scale_max = 0.75
-scale_curve = SubResource("CurveXYZTexture_rx6jw")
+scale_curve = SubResource("CurveXYZTexture_6ais0")
 color = Color(5, 2, 1, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_eaopn"]
 
 [node name="PelotaImpact" type="Node3D"]
-script = ExtResource("1_bum4s")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)

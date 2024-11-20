@@ -1,10 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://dsvknykpav38t"]
+[gd_scene load_steps=18 format=3 uid="uid://cn5iqud7ia78x"]
 
-[ext_resource type="Script" path="res://Scripts/shotgun.gd" id="1_025rv"]
-[ext_resource type="PackedScene" uid="uid://dli43ddpmgo0b" path="res://Scenes/shot.tscn" id="2_7sxvm"]
-[ext_resource type="ArrayMesh" uid="uid://vtjliblqogef" path="res://Assets/Models/shotgun/Usable Meshes/escopeta_Cube_002.res" id="2_11xgw"]
-[ext_resource type="Texture2D" uid="uid://cm2l4uwp11up0" path="res://Assets/Models/Textures/sharp_circle.png" id="4_pnd50"]
-[ext_resource type="Shader" path="res://Scenes/shotgun.gdshader" id="4_vi2jk"]
+[ext_resource type="Script" path="res://Scripts/shotgun.gd" id="1_62rpc"]
+[ext_resource type="PackedScene" uid="uid://dli43ddpmgo0b" path="res://Scenes/shot.tscn" id="2_gpfsw"]
+[ext_resource type="ArrayMesh" uid="uid://b0fyv8343kft0" path="res://Assets/Models/pistol/Usable Meshes/pistol_Cube_001.res" id="3_wrcmq"]
+[ext_resource type="Shader" path="res://Scenes/shotgun.gdshader" id="4_yu3s3"]
+[ext_resource type="Texture2D" uid="uid://cm2l4uwp11up0" path="res://Assets/Models/Textures/sharp_circle.png" id="5_4yo62"]
 
 [sub_resource type="Animation" id="Animation_5pfxa"]
 length = 0.001
@@ -94,7 +94,7 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vlotp"]
 render_priority = 0
-shader = ExtResource("4_vi2jk")
+shader = ExtResource("4_yu3s3")
 
 [sub_resource type="QuadMesh" id="QuadMesh_td1c8"]
 material = SubResource("ShaderMaterial_vlotp")
@@ -105,7 +105,7 @@ transparency = 1
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("4_pnd50")
+albedo_texture = ExtResource("5_4yo62")
 
 [sub_resource type="Curve" id="Curve_my52j"]
 _data = [Vector2(0, 0.494505), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -141,8 +141,8 @@ color = Color(3, 1.5, 1, 1)
 [sub_resource type="QuadMesh" id="QuadMesh_42mmq"]
 
 [node name="Shotgun" type="Node3D"]
-script = ExtResource("1_025rv")
-bullet = ExtResource("2_7sxvm")
+script = ExtResource("1_62rpc")
+bullet = ExtResource("2_gpfsw")
 shot_velocity = 130.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -152,22 +152,20 @@ libraries = {
 }
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-layers = 2
-mesh = ExtResource("2_11xgw")
+mesh = ExtResource("3_wrcmq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.144285, 0)
-visible = false
 layers = 3
 mesh = SubResource("QuadMesh_td1c8")
 
 [node name="BulletOrigin" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.103144, -0.709805)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0953823, -0.153549)
 
 [node name="ShootingOrigin" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.103144, -0.0564606)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.095, 0.132)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
