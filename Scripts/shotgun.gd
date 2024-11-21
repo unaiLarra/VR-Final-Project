@@ -14,7 +14,6 @@ func shoot() -> void:
 	direction = direction.normalized()
 	SignalBus.shoot_projectile.emit(%BulletOrigin.global_position, direction * shot_velocity, bullet)
 	%AnimationPlayer.play("Shoot")
-	%GPUParticles3D.restart()
 
 func _on_pickable_object_action_pressed(pickable: Variant) -> void:
 	shoot()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://imyocjyp22p2"]
 
 [ext_resource type="Script" path="res://Scripts/fps_controller.gd" id="1_re5c7"]
-[ext_resource type="PackedScene" uid="uid://dsvknykpav38t" path="res://Scenes/shotgun.tscn" id="2_0ehii"]
+[ext_resource type="PackedScene" uid="uid://b3lv81bp2w3p" path="res://Scenes/pistol.tscn" id="2_bt20x"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ns2d4"]
 
@@ -14,19 +14,19 @@ step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("XPivot/Weapons/Shotgun:position")
+tracks/0/path = NodePath("XPivot/Weapons/Shotgun2:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.125),
-"transitions": PackedFloat32Array(1, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.153, 0.381, -0.511), Vector3(0, 0.43, -0.511)]
+"values": [Vector3(0.145, 0.413, -0.286), Vector3(0, 0.461, -0.286)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("XPivot/Weapons/Shotgun:rotation")
+tracks/1/path = NodePath("XPivot/Weapons/Shotgun2:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -41,19 +41,19 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("XPivot/Weapons/Shotgun:position")
+tracks/0/path = NodePath("XPivot/Weapons/Shotgun2:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.153, 0.381, -0.511)]
+"values": [Vector3(0.145, 0.413, -0.286)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("XPivot/Weapons/Shotgun:rotation")
+tracks/1/path = NodePath("XPivot/Weapons/Shotgun2:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -86,8 +86,8 @@ fov = 55.0
 [node name="Weapons" type="Node3D" parent="XPivot"]
 unique_name_in_owner = true
 
-[node name="Shotgun" parent="XPivot/Weapons" instance=ExtResource("2_0ehii")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.153, 0.381, -0.511)
+[node name="Shotgun2" parent="XPivot/Weapons" instance=ExtResource("2_bt20x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.145, 0.413, -0.286)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false

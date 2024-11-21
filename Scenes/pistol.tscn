@@ -31,18 +31,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MeshInstance3D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_b3i7i"]
 resource_name = "Shoot"
@@ -58,7 +46,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0375, 0.1625),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0.0243169, 0.0240468), Vector3(0, 0.0243169, 0.0240468), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0.018009, 0.0207693), Vector3(0, 0.018009, 0.0207693), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -70,19 +58,21 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.0375, 0.1625),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0.253073, 0, 0), Vector3(0.253073, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0.19162, 0, 0), Vector3(0.19162, 0, 0), Vector3(0, 0, 0)]
 }
-tracks/2/type = "value"
+tracks/2/type = "method"
 tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("MeshInstance3D:scale")
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles3D")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0375, 0.1625),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(1.225, 1, 0.87), Vector3(1.225, 1, 0.87), Vector3(1, 1, 1)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"restart"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8v8mg"]
@@ -147,15 +137,15 @@ mesh = ExtResource("3_wrcmq")
 
 [node name="BulletOrigin" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0812615, -0.105891)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0693484, -0.0860217)
 
 [node name="ShootingOrigin" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0808792, 0.104641)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0689661, 0.0852338)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 5.96046e-08, 0.102046, -0.706681)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 5.96046e-08, 0.0654328, -0.149352)
 material_override = SubResource("StandardMaterial3D_qx4yk")
 emitting = false
 amount = 12
