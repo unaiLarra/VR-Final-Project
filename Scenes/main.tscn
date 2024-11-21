@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bv3q4qx2vsd4u"]
+[gd_scene load_steps=15 format=3 uid="uid://bv3q4qx2vsd4u"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_oacss"]
 [ext_resource type="Material" uid="uid://bx6qeabdhq2s" path="res://addons/kenney_prototype_tools/materials/dark/material_01.tres" id="1_v7lbm"]
@@ -10,6 +10,7 @@
 [ext_resource type="Material" uid="uid://d0hicg0fjb7jg" path="res://addons/kenney_prototype_tools/materials/green/material_08.tres" id="6_of8sc"]
 [ext_resource type="PackedScene" uid="uid://btg7dswluaru7" path="res://Scenes/pickable_shotgun.tscn" id="8_bia2o"]
 [ext_resource type="PackedScene" uid="uid://cpmner8e001xm" path="res://Scenes/pickable_pistol.tscn" id="10_6j646"]
+[ext_resource type="PackedScene" uid="uid://bq6svnyqgku1j" path="res://Scenes/pickable_axe.tscn" id="11_u6bl3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bnwfv"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -84,7 +85,13 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0991
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0991888, 0.8, -127.306)
 
 [node name="PickableObject" parent="." instance=ExtResource("8_bia2o")]
-transform = Transform3D(-3.09086e-08, -0.707107, 0.707107, 1, -4.37114e-08, 0, 3.09086e-08, 0.707107, 0.707107, 1.53666, 1.09546, 8.90989)
+transform = Transform3D(-3.09086e-08, -0.707107, 0.707107, 1, -4.37114e-08, 0, 3.09086e-08, 0.707107, 0.707107, 1.53666, 1.14272, 8.90989)
 
 [node name="PickableObject2" parent="." instance=ExtResource("10_6j646")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.698253, 1.20149, 8.96146)
+transform = Transform3D(3.78552e-08, -0.866025, -0.5, -1, -4.37114e-08, 0, -2.18557e-08, 0.5, -0.866025, 0.698253, 1.13061, 8.96146)
+
+[node name="PickableObject4" parent="." instance=ExtResource("10_6j646")]
+transform = Transform3D(3.78552e-08, -0.866025, -0.5, -1, -4.37114e-08, 0, -2.18557e-08, 0.5, -0.866025, 1.03452, 1.13061, 9.1152)
+
+[node name="PickableObject3" parent="." instance=ExtResource("11_u6bl3")]
+transform = Transform3D(-0.0157926, -0.499751, -0.866025, 0.999501, -0.0315852, 0, -0.0273536, -0.865593, 0.5, 0.297539, 1.14373, 9.18903)

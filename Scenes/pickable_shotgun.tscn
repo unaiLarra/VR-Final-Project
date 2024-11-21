@@ -11,8 +11,10 @@
 script = ExtResource("5_6ge71")
 
 [node name="PickableObject" instance=ExtResource("1_eabhw")]
+continuous_cd = true
 
 [node name="Shotgun" parent="." index="0" instance=ExtResource("2_7guwn")]
+shot_velocity = 200.0
 
 [node name="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.62444e-05, 0.000435457)
@@ -25,6 +27,7 @@ hand_pose = SubResource("Resource_tqlbc")
 
 [node name="GrabPointHandLeft" parent="." index="3" instance=ExtResource("5_cixqh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.007, 0.077, -0.048)
+visible = true
 
 [connection signal="action_pressed" from="." to="Shotgun" method="_on_pickable_object_action_pressed"]
 

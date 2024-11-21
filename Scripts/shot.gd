@@ -16,4 +16,7 @@ func _on_body_entered(body: Node) -> void:
 	if body is Pumpkin:
 		var impulse_position = last_velocity * 0.009
 		body.explode(impulse_position, last_velocity.length() * 0.11)
+	elif body is XRToolsPickable:
+		print('Entered XR pickable')
+		body.apply_central_impulse(last_velocity)
 	queue_free()
