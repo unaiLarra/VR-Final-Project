@@ -1,29 +1,39 @@
-[gd_scene load_steps=8 format=3 uid="uid://don4bwbc1yvrr"]
+[gd_scene load_steps=10 format=3 uid="uid://don4bwbc1yvrr"]
 
 [ext_resource type="Shader" uid="uid://b8d8xkcl2qioi" path="res://Resources/star_shader.tres" id="1_w3wq0"]
-[ext_resource type="Texture2D" uid="uid://dqxfos8cf7jsg" path="res://Assets/Textures/T_flare81.png" id="2_iu7iq"]
+[ext_resource type="Texture2D" uid="uid://bw3c7hajol8j2" path="res://Assets/Textures/T_flare82.png" id="2_xe5aa"]
 
-[sub_resource type="Curve" id="Curve_3wipm"]
+[sub_resource type="Curve" id="Curve_yhq3l"]
+max_value = 3.0
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.113402, 1), 4.45754, 4.45754, 0, 0, Vector2(0.21134, 0.967033), -6.3956, -6.3956, 0, 0, Vector2(0.463917, 0.032967), 0.0, 0.0, 0, 0, Vector2(0.809278, 0), 0.0, 0.0, 0, 0, Vector2(0.814433, 0), 0.0, 0.0, 0, 0]
 point_count = 6
 
-[sub_resource type="CurveTexture" id="CurveTexture_03vf4"]
-curve = SubResource("Curve_3wipm")
+[sub_resource type="Curve" id="Curve_rrjjx"]
+max_value = 3.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.113402, 1), 4.45754, 4.45754, 0, 0, Vector2(0.21134, 0.967033), -6.3956, -6.3956, 0, 0, Vector2(0.463917, 0.032967), 0.0, 0.0, 0, 0, Vector2(0.809278, 0), 0.0, 0.0, 0, 0, Vector2(0.814433, 0), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="Curve" id="Curve_dvhxy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_nwgsd"]
+curve_x = SubResource("Curve_yhq3l")
+curve_y = SubResource("Curve_rrjjx")
+curve_z = SubResource("Curve_dvhxy")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5eyj4"]
 emission_shape = 1
 emission_sphere_radius = 7.0
-angle_min = 45.0
-angle_max = 45.0
 gravity = Vector3(0, 0, 0)
 scale_min = 1.6
 scale_max = 4.55
-scale_curve = SubResource("CurveTexture_03vf4")
+scale_curve = SubResource("CurveXYZTexture_nwgsd")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c7j58"]
 render_priority = 0
 shader = ExtResource("1_w3wq0")
-shader_parameter/Star_Texture = ExtResource("2_iu7iq")
+shader_parameter/Star_Texture = ExtResource("2_xe5aa")
 
 [sub_resource type="QuadMesh" id="QuadMesh_wr3xw"]
 material = SubResource("ShaderMaterial_c7j58")
@@ -31,9 +41,7 @@ material = SubResource("ShaderMaterial_c7j58")
 [node name="Explosion" type="AnimationPlayer"]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-emitting = false
 amount = 15
-one_shot = true
-explosiveness = 0.44
+explosiveness = 0.7
 process_material = SubResource("ParticleProcessMaterial_5eyj4")
 draw_pass_1 = SubResource("QuadMesh_wr3xw")
