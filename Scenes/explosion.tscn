@@ -1,47 +1,335 @@
-[gd_scene load_steps=10 format=3 uid="uid://don4bwbc1yvrr"]
+[gd_scene load_steps=30 format=3 uid="uid://don4bwbc1yvrr"]
 
+[ext_resource type="Material" uid="uid://cb0rmgfnrm2gu" path="res://Resources/star_particles.tres" id="1_5o327"]
 [ext_resource type="Shader" uid="uid://b8d8xkcl2qioi" path="res://Resources/star_shader.tres" id="1_w3wq0"]
+[ext_resource type="Script" path="res://Scripts/explosion.gd" id="1_xtn6p"]
 [ext_resource type="Texture2D" uid="uid://bw3c7hajol8j2" path="res://Assets/Textures/T_flare82.png" id="2_xe5aa"]
+[ext_resource type="Shader" uid="uid://lwlyi3twrf5l" path="res://Resources/explosion.tres" id="3_dxpm1"]
 
-[sub_resource type="Curve" id="Curve_yhq3l"]
-max_value = 3.0
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.113402, 1), 4.45754, 4.45754, 0, 0, Vector2(0.21134, 0.967033), -6.3956, -6.3956, 0, 0, Vector2(0.463917, 0.032967), 0.0, 0.0, 0, 0, Vector2(0.809278, 0), 0.0, 0.0, 0, 0, Vector2(0.814433, 0), 0.0, 0.0, 0, 0]
-point_count = 6
+[sub_resource type="Animation" id="Animation_qacbf"]
+resource_name = "new_animation"
 
-[sub_resource type="Curve" id="Curve_rrjjx"]
-max_value = 3.0
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.113402, 1), 4.45754, 4.45754, 0, 0, Vector2(0.21134, 0.967033), -6.3956, -6.3956, 0, 0, Vector2(0.463917, 0.032967), 0.0, 0.0, 0, 0, Vector2(0.809278, 0), 0.0, 0.0, 0, 0, Vector2(0.814433, 0), 0.0, 0.0, 0, 0]
-point_count = 6
+[sub_resource type="Animation" id="Animation_avwlj"]
+resource_name = "Explode"
+length = 3.0
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LightSphere:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LightSphere:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.7, 1.75),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Vector3(0.295, 0.295, 0.295), Vector3(1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StarsBothEyes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"restart"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StarsLeftEye")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"restart"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("StarsRightEye")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"restart"
+}]
+}
 
-[sub_resource type="Curve" id="Curve_dvhxy"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
+[sub_resource type="Animation" id="Animation_bgv77"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LightSphere:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LightSphere:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.295, 0.295, 0.295)]
+}
 
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_nwgsd"]
-curve_x = SubResource("Curve_yhq3l")
-curve_y = SubResource("Curve_rrjjx")
-curve_z = SubResource("Curve_dvhxy")
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kksfn"]
+_data = {
+"Explode": SubResource("Animation_avwlj"),
+"RESET": SubResource("Animation_bgv77"),
+"new_animation": SubResource("Animation_qacbf")
+}
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5eyj4"]
-emission_shape = 1
-emission_sphere_radius = 7.0
-gravity = Vector3(0, 0, 0)
-scale_min = 1.6
-scale_max = 4.55
-scale_curve = SubResource("CurveXYZTexture_nwgsd")
+[sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_2we0c"]
+default_input_values = [0, 0, 1, 0, 2, 1]
+op_type = 1
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_c7j58"]
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_v2qfi"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_m4joo"]
+expanded_output_ports = [0]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_swkol"]
+parameter_name = "Star_Texture"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_joywy"]
+expanded_output_ports = [0]
+source = 5
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_jukgx"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_qrhcw"]
+input_name = "view_index"
+
+[sub_resource type="VisualShaderNodeIntParameter" id="VisualShaderNodeIntParameter_rvh6x"]
+parameter_name = "ViewIndex"
+
+[sub_resource type="VisualShaderNodeIntOp" id="VisualShaderNodeIntOp_mydvq"]
+operator = 1
+
+[sub_resource type="VisualShaderNodeIntFunc" id="VisualShaderNodeIntFunc_fqyf3"]
+function = 0
+
+[sub_resource type="VisualShaderNodeBillboard" id="VisualShaderNodeBillboard_4c5cn"]
+billboard_type = 3
+keep_scale = true
+
+[sub_resource type="VisualShader" id="VisualShader_llhp4"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded;
+
+uniform int ViewIndex;
+uniform sampler2D Star_Texture;
+
+
+
+void vertex() {
+	mat4 n_out2p0;
+// GetBillboardMatrix:2
+	{
+		mat4 __wm = mat4(normalize(INV_VIEW_MATRIX[0]), normalize(INV_VIEW_MATRIX[1]), normalize(INV_VIEW_MATRIX[2]), MODEL_MATRIX[3]);
+		__wm = __wm * mat4(vec4(cos(INSTANCE_CUSTOM.x), -sin(INSTANCE_CUSTOM.x), 0.0, 0.0), vec4(sin(INSTANCE_CUSTOM.x), cos(INSTANCE_CUSTOM.x), 0.0, 0.0), vec4(0.0, 0.0, 1.0, 0.0), vec4(0.0, 0.0, 0.0, 1.0));
+		__wm = __wm * mat4(vec4(length(MODEL_MATRIX[0].xyz), 0.0, 0.0, 0.0), vec4(0.0, length(MODEL_MATRIX[1].xyz), 0.0, 0.0), vec4(0.0, 0.0, length(MODEL_MATRIX[2].xyz), 0.0), vec4(0.0, 0.0, 0.0, 1.0));
+		n_out2p0 = VIEW_MATRIX * __wm;
+	}
+
+
+// Output:0
+	MODELVIEW_MATRIX = n_out2p0;
+
+
+}
+
+void fragment() {
+// Input:2
+	vec4 n_out2p0 = COLOR;
+	float n_out2p4 = n_out2p0.a;
+
+
+// IntParameter:7
+	int n_out7p0 = ViewIndex;
+
+
+// Input:6
+	int n_out6p0 = VIEW_INDEX;
+
+
+// IntOp:8
+	int n_out8p0 = n_out7p0 - n_out6p0;
+
+
+// IntFunc:9
+	int n_out9p0 = abs(n_out8p0);
+
+
+// Clamp:10
+	int n_in10p1 = 0;
+	int n_in10p2 = 1;
+	int n_out10p0 = clamp(n_out9p0, n_in10p1, n_in10p2);
+
+
+	vec4 n_out4p0;
+// Texture2D:4
+	n_out4p0 = texture(Star_Texture, UV);
+	float n_out4p1 = n_out4p0.r;
+
+
+// FloatOp:5
+	float n_out5p0 = n_out4p1 * n_out2p4;
+
+
+// FloatOp:11
+	float n_out11p0 = float(n_out10p0) * n_out5p0;
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+	ALPHA = n_out11p0;
+
+
+}
+"
+graph_offset = Vector2(-396.18, 348.908)
+flags/unshaded = true
+nodes/vertex/2/node = SubResource("VisualShaderNodeBillboard_4c5cn")
+nodes/vertex/2/position = Vector2(40, 500)
+nodes/vertex/connections = PackedInt32Array(2, 0, 0, 10)
+nodes/fragment/0/position = Vector2(800, 80)
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_m4joo")
+nodes/fragment/2/position = Vector2(-260, 100)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture2DParameter_swkol")
+nodes/fragment/3/position = Vector2(-580, 420)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_joywy")
+nodes/fragment/4/position = Vector2(-200, 420)
+nodes/fragment/5/node = SubResource("VisualShaderNodeFloatOp_jukgx")
+nodes/fragment/5/position = Vector2(160, 440)
+nodes/fragment/6/node = SubResource("VisualShaderNodeInput_qrhcw")
+nodes/fragment/6/position = Vector2(-540, 840)
+nodes/fragment/7/node = SubResource("VisualShaderNodeIntParameter_rvh6x")
+nodes/fragment/7/position = Vector2(-540, 960)
+nodes/fragment/8/node = SubResource("VisualShaderNodeIntOp_mydvq")
+nodes/fragment/8/position = Vector2(-180, 840)
+nodes/fragment/9/node = SubResource("VisualShaderNodeIntFunc_fqyf3")
+nodes/fragment/9/position = Vector2(40, 860)
+nodes/fragment/10/node = SubResource("VisualShaderNodeClamp_2we0c")
+nodes/fragment/10/position = Vector2(240, 800)
+nodes/fragment/11/node = SubResource("VisualShaderNodeFloatOp_v2qfi")
+nodes/fragment/11/position = Vector2(460, 460)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 4, 2, 4, 1, 5, 0, 2, 4, 5, 1, 6, 0, 8, 1, 7, 0, 8, 0, 8, 0, 9, 0, 9, 0, 10, 0, 10, 0, 11, 0, 5, 0, 11, 1, 11, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x4lki"]
 render_priority = 0
-shader = ExtResource("1_w3wq0")
+shader = SubResource("VisualShader_llhp4")
+shader_parameter/ViewIndex = 2
 shader_parameter/Star_Texture = ExtResource("2_xe5aa")
 
 [sub_resource type="QuadMesh" id="QuadMesh_wr3xw"]
-material = SubResource("ShaderMaterial_c7j58")
+material = SubResource("ShaderMaterial_x4lki")
 
-[node name="Explosion" type="AnimationPlayer"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tlglh"]
+render_priority = 0
+shader = ExtResource("1_w3wq0")
+shader_parameter/ViewIndex = 0
+shader_parameter/Star_Texture = ExtResource("2_xe5aa")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-amount = 15
-explosiveness = 0.7
-process_material = SubResource("ParticleProcessMaterial_5eyj4")
+[sub_resource type="QuadMesh" id="QuadMesh_ish3w"]
+material = SubResource("ShaderMaterial_tlglh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xtc2x"]
+render_priority = 0
+shader = ExtResource("1_w3wq0")
+shader_parameter/ViewIndex = 1
+shader_parameter/Star_Texture = ExtResource("2_xe5aa")
+
+[sub_resource type="QuadMesh" id="QuadMesh_q1iu4"]
+material = SubResource("ShaderMaterial_xtc2x")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cb68j"]
+render_priority = 0
+shader = ExtResource("3_dxpm1")
+shader_parameter/ColorParameter = Color(1.6, 1.5, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_25c48"]
+material = SubResource("ShaderMaterial_cb68j")
+radius = 15.0
+height = 30.0
+
+[node name="Explosion" type="Node3D"]
+script = ExtResource("1_xtn6p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_kksfn")
+}
+
+[node name="StarsBothEyes" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 7
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.55
+process_material = ExtResource("1_5o327")
 draw_pass_1 = SubResource("QuadMesh_wr3xw")
+
+[node name="StarsLeftEye" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 5
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.55
+process_material = ExtResource("1_5o327")
+draw_pass_1 = SubResource("QuadMesh_ish3w")
+
+[node name="StarsRightEye" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 5
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.55
+process_material = ExtResource("1_5o327")
+draw_pass_1 = SubResource("QuadMesh_q1iu4")
+
+[node name="LightSphere" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, 0, 3.85598, 0)
+visible = false
+mesh = SubResource("SphereMesh_25c48")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
