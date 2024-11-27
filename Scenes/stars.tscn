@@ -1,7 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cgfwfio433l84"]
 
 [ext_resource type="Shader" uid="uid://b8d8xkcl2qioi" path="res://Resources/star_shader.tres" id="1_oyvb4"]
-[ext_resource type="Texture2D" uid="uid://dqxfos8cf7jsg" path="res://Assets/Models/Textures/T_flare81.png" id="2_yisti"]
+[ext_resource type="Texture2D" uid="uid://dqxfos8cf7jsg" path="res://Assets/Textures/T_flare81.png" id="2_yisti"]
+
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6vjol"]
 render_priority = 0

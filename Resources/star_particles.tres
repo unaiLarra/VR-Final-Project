@@ -1,0 +1,28 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=5 format=3 uid="uid://cb0rmgfnrm2gu"]
+
+[sub_resource type="Curve" id="Curve_yhq3l"]
+max_value = 3.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.159794, 1.68132), 14.0703, 14.0703, 0, 0, Vector2(0.237113, 1.64835), -16.2022, -16.2022, 0, 0, Vector2(0.371134, 0), 0.0, 0.0, 0, 0, Vector2(0.809278, 0), 0.0, 0.0, 0, 0, Vector2(0.814433, 0), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="Curve" id="Curve_rrjjx"]
+max_value = 3.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.103093, 1.41758), 4.45754, 4.45754, 0, 0, Vector2(0.159794, 1.41758), -6.3956, -6.3956, 0, 0, Vector2(0.283505, 0), 0.0, 0.0, 0, 0, Vector2(0.809278, 0), 0.0, 0.0, 0, 0, Vector2(0.814433, 0), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="Curve" id="Curve_dvhxy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_nwgsd"]
+curve_x = SubResource("Curve_yhq3l")
+curve_y = SubResource("Curve_rrjjx")
+curve_z = SubResource("Curve_dvhxy")
+
+[resource]
+emission_shape = 1
+emission_sphere_radius = 9.0
+gravity = Vector3(0, 0, 0)
+scale_min = 1.6
+scale_max = 4.55
+scale_curve = SubResource("CurveXYZTexture_nwgsd")
