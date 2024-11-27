@@ -95,3 +95,7 @@ transform = Transform3D(3.78552e-08, -0.866025, -0.5, -1, -4.37114e-08, 0, -2.18
 
 [node name="PickableObject3" parent="." instance=ExtResource("11_u6bl3")]
 transform = Transform3D(-0.0157926, -0.499751, -0.866025, 0.999501, -0.0315852, 0, -0.0273536, -0.865593, 0.5, 0.297539, 1.14373, 9.18903)
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.571258, 0.82077, 0, -0.82077, 0.571258, -0.291239, 1.16533, 8.92906)
+text = "VR@Oulu,2024"
