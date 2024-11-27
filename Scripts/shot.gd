@@ -19,4 +19,6 @@ func _on_body_entered(body: Node) -> void:
 	elif body is XRToolsPickable:
 		print('Entered XR pickable')
 		body.apply_central_impulse(last_velocity)
+	elif body is ExplosionTest:
+		body.explode()
 	queue_free()

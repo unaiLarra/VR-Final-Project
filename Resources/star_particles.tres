@@ -21,7 +21,7 @@ curve_z = SubResource("Curve_dvhxy")
 
 [resource]
 emission_shape = 1
-emission_sphere_radius = 7.0
+emission_sphere_radius = 9.0
 gravity = Vector3(0, 0, 0)
 scale_min = 1.6
 scale_max = 4.55
