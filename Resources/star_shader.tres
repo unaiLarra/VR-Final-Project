@@ -16,6 +16,7 @@ operator = 2
 
 [sub_resource type="VisualShaderNodeBillboard" id="VisualShaderNodeBillboard_cjyq7"]
 billboard_type = 3
+keep_scale = true
 
 [resource]
 code = "shader_type spatial;
@@ -31,6 +32,7 @@ void vertex() {
 	{
 		mat4 __wm = mat4(normalize(INV_VIEW_MATRIX[0]), normalize(INV_VIEW_MATRIX[1]), normalize(INV_VIEW_MATRIX[2]), MODEL_MATRIX[3]);
 		__wm = __wm * mat4(vec4(cos(INSTANCE_CUSTOM.x), -sin(INSTANCE_CUSTOM.x), 0.0, 0.0), vec4(sin(INSTANCE_CUSTOM.x), cos(INSTANCE_CUSTOM.x), 0.0, 0.0), vec4(0.0, 0.0, 1.0, 0.0), vec4(0.0, 0.0, 0.0, 1.0));
+		__wm = __wm * mat4(vec4(length(MODEL_MATRIX[0].xyz), 0.0, 0.0, 0.0), vec4(0.0, length(MODEL_MATRIX[1].xyz), 0.0, 0.0), vec4(0.0, 0.0, length(MODEL_MATRIX[2].xyz), 0.0), vec4(0.0, 0.0, 0.0, 1.0));
 		n_out2p0 = VIEW_MATRIX * __wm;
 	}
 
@@ -64,9 +66,10 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(60.87, 127.342)
 flags/unshaded = true
 nodes/vertex/2/node = SubResource("VisualShaderNodeBillboard_cjyq7")
-nodes/vertex/2/position = Vector2(120, 680)
+nodes/vertex/2/position = Vector2(40, 500)
 nodes/vertex/connections = PackedInt32Array(2, 0, 0, 10)
 nodes/fragment/0/position = Vector2(440, 80)
 nodes/fragment/2/node = SubResource("VisualShaderNodeInput_y88fj")

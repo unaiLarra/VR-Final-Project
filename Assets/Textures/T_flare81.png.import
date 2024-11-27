@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cm2l4uwp11up0"
-path.s3tc="res://.godot/imported/sharp_circle.png-d68920488504109933dc8d5a6b2b2881.s3tc.ctex"
+uid="uid://dqxfos8cf7jsg"
+path.s3tc="res://.godot/imported/T_flare81.png-9c74a29396eacbd0d3866a1bc341efae.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Models/Textures/sharp_circle.png"
-dest_files=["res://.godot/imported/sharp_circle.png-d68920488504109933dc8d5a6b2b2881.s3tc.ctex"]
+source_file="res://Assets/Textures/T_flare81.png"
+dest_files=["res://.godot/imported/T_flare81.png-9c74a29396eacbd0d3866a1bc341efae.s3tc.ctex"]
 
 [params]
 
