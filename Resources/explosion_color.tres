@@ -1,0 +1,8 @@
+[gd_resource type="NoiseTexture2D" load_steps=2 format=3 uid="uid://bubbfp653aovi"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6o04w"]
+frequency = 0.008
+fractal_weighted_strength = 0.43
+
+[resource]
+noise = SubResource("FastNoiseLite_6o04w")

@@ -1,17 +1,18 @@
-[gd_scene load_steps=30 format=3 uid="uid://don4bwbc1yvrr"]
+[gd_scene load_steps=54 format=3 uid="uid://don4bwbc1yvrr"]
 
 [ext_resource type="Material" uid="uid://cb0rmgfnrm2gu" path="res://Resources/star_particles.tres" id="1_5o327"]
 [ext_resource type="Shader" uid="uid://b8d8xkcl2qioi" path="res://Resources/star_shader.tres" id="1_w3wq0"]
 [ext_resource type="Script" path="res://Scripts/explosion.gd" id="1_xtn6p"]
 [ext_resource type="Texture2D" uid="uid://bw3c7hajol8j2" path="res://Assets/Textures/T_flare82.png" id="2_xe5aa"]
 [ext_resource type="Shader" uid="uid://lwlyi3twrf5l" path="res://Resources/explosion.tres" id="3_dxpm1"]
-
-[sub_resource type="Animation" id="Animation_qacbf"]
-resource_name = "new_animation"
+[ext_resource type="Material" uid="uid://dhd13s5qspte5" path="res://Scenes/explosion_material.tres" id="6_00oic"]
+[ext_resource type="Shader" uid="uid://bw36rdr0urilc" path="res://Scenes/distortion_ring.tres" id="7_5b4k2"]
+[ext_resource type="ArrayMesh" uid="uid://dugudee456dxx" path="res://Assets/Models/VFX/ring_Circle.res" id="7_vvcxv"]
+[ext_resource type="Script" path="res://Scripts/ring.gd" id="8_76c6p"]
 
 [sub_resource type="Animation" id="Animation_avwlj"]
 resource_name = "Explode"
-length = 3.0
+length = 5.0
 step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -20,10 +21,10 @@ tracks/0/path = NodePath("LightSphere:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.05),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 2.05, 2.825),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true]
+"values": [false, true, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -32,8 +33,8 @@ tracks/1/path = NodePath("LightSphere:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(2.05, 2.15),
-"transitions": PackedFloat32Array(1, 0.5),
+"times": PackedFloat32Array(2.05, 2.275),
+"transitions": PackedFloat32Array(0.5, 0.210224),
 "update": 0,
 "values": [Vector3(0.295, 0.295, 0.295), Vector3(1, 1, 1)]
 }
@@ -79,6 +80,44 @@ tracks/4/keys = {
 "method": &"restart"
 }]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Explosion")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2.85),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"restart"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("DistortionRing:material_override:shader_parameter/FloatParameter")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(2.075, 2.225, 2.825),
+"transitions": PackedFloat32Array(0.5, 6.06286, 0.5),
+"update": 0,
+"values": [0.0, 1.33, 0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("DistortionRing:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2.05, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
 
 [sub_resource type="Animation" id="Animation_bgv77"]
 length = 0.001
@@ -106,6 +145,33 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0.295, 0.295, 0.295)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DistortionRing:material_override:shader_parameter/FloatParameter")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.33]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DistortionRing:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qacbf"]
+resource_name = "new_animation"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kksfn"]
 _data = {
@@ -291,6 +357,99 @@ material = SubResource("ShaderMaterial_cb68j")
 radius = 15.0
 height = 30.0
 
+[sub_resource type="SphereMesh" id="SphereMesh_jvm7r"]
+material = ExtResource("6_00oic")
+radius = 15.0
+height = 30.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mq2yy"]
+render_priority = 0
+shader = ExtResource("7_5b4k2")
+shader_parameter/CloudSpeed = Vector2(0, 0.008)
+shader_parameter/FloatParameter = 1.33
+
+[sub_resource type="SphereMesh" id="SphereMesh_j80s2"]
+radial_segments = 128
+rings = 64
+
+[sub_resource type="Curve" id="Curve_xwp1l"]
+_data = [Vector2(0.791165, 0), 0.0, 0.0, 0, 0, Vector2(0.994475, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ndd17"]
+curve = SubResource("Curve_xwp1l")
+
+[sub_resource type="CurveTexture" id="CurveTexture_uv8xm"]
+
+[sub_resource type="Curve" id="Curve_tmvjl"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0.453039, -75.1648), 0.0, 0.0, 0, 0, Vector2(1, 360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_t665l"]
+curve = SubResource("Curve_tmvjl")
+
+[sub_resource type="Gradient" id="Gradient_f80yy"]
+offsets = PackedFloat32Array(0.158371, 0.294118)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cykxb"]
+gradient = SubResource("Gradient_f80yy")
+
+[sub_resource type="Curve" id="Curve_mhdgy"]
+min_value = -2.0
+max_value = 2.0
+_data = [Vector2(0, 1.6044), 0.0, 0.0, 0, 0, Vector2(0.569061, 0.0659342), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gu2aa"]
+curve = SubResource("Curve_mhdgy")
+
+[sub_resource type="Curve" id="Curve_beudk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.184739, 0.166948), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_86del"]
+curve = SubResource("Curve_beudk")
+
+[sub_resource type="Curve" id="Curve_w1icf"]
+_data = [Vector2(0, 0.0463744), 0.0, 9.82563, 0, 0, Vector2(0.140562, 1), 0.629848, 0.629848, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ipx5q"]
+curve = SubResource("Curve_w1icf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2x3yu"]
+emission_shape = 1
+emission_sphere_radius = 10.0
+angle_min = -45.0
+angle_max = 45.0
+angle_curve = SubResource("CurveTexture_uv8xm")
+angular_velocity_curve = SubResource("CurveTexture_t665l")
+orbit_velocity_curve = SubResource("CurveTexture_gu2aa")
+radial_velocity_min = 50.0
+radial_velocity_max = 60.0
+radial_velocity_curve = SubResource("CurveTexture_86del")
+gravity = Vector3(0, 0, 0)
+scale_min = 1.2
+scale_max = 1.6
+scale_curve = SubResource("CurveTexture_ipx5q")
+color_ramp = SubResource("GradientTexture1D_cykxb")
+alpha_curve = SubResource("CurveTexture_ndd17")
+
+[sub_resource type="SphereMesh" id="SphereMesh_snpqw"]
+radius = 15.0
+height = 30.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qntrb"]
+render_priority = 0
+shader = ExtResource("1_w3wq0")
+shader_parameter/ViewIndex = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_5vvmr"]
+material = SubResource("ShaderMaterial_qntrb")
+size = Vector2(1000, 1000)
+
 [node name="Explosion" type="Node3D"]
 script = ExtResource("1_xtn6p")
 
@@ -336,3 +495,34 @@ visible = false
 mesh = SubResource("SphereMesh_25c48")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+
+[node name="ExplosionCloud" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.1491, 0, 0)
+visible = false
+mesh = SubResource("SphereMesh_jvm7r")
+
+[node name="DistortionRing" type="MeshInstance3D" parent="."]
+transform = Transform3D(16, 0, 0, 0, 16, 0, 0, 0, 16, 0, -9.48521, 0)
+visible = false
+material_override = SubResource("ShaderMaterial_mq2yy")
+mesh = SubResource("SphereMesh_j80s2")
+skeleton = NodePath("")
+
+[node name="Explosion" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+material_override = ExtResource("6_00oic")
+emitting = false
+amount = 5
+lifetime = 1.8
+one_shot = true
+explosiveness = 0.8
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_2x3yu")
+draw_pass_1 = SubResource("SphereMesh_snpqw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("7_vvcxv")
+script = ExtResource("8_76c6p")
+
+[node name="FlashingLights" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_5vvmr")

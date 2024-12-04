@@ -39,7 +39,7 @@ keep_scale = true
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded;
 
 uniform int ViewIndex;
 uniform sampler2D Star_Texture;
@@ -112,7 +112,8 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-396.18, 348.908)
+graph_offset = Vector2(-590.078, -44.2416)
+modes/cull = 2
 flags/unshaded = true
 nodes/vertex/2/node = SubResource("VisualShaderNodeBillboard_cjyq7")
 nodes/vertex/2/position = Vector2(40, 500)
