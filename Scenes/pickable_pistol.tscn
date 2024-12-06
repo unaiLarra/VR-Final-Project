@@ -27,6 +27,12 @@ hand_pose = SubResource("Resource_tqlbc")
 [node name="GrabPointHandLeft" parent="." index="3" instance=ExtResource("6_jpwx5")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.017, 0.036, 0.04)
 
+[node name="Label3D" type="Label3D" parent="." index="4"]
+transform = Transform3D(-0.19, 0, -2.86892e-08, 0, 0.19, 0, 2.86892e-08, 0, -0.19, 0.0774098, 0.0686699, 0.0432056)
+text = "Normal Gun"
+font_size = 20
+outline_size = 8
+
 [connection signal="action_pressed" from="." to="Shotgun" method="_on_pickable_object_action_pressed"]
 
 [editable path="Shotgun"]
