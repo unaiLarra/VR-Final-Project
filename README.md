@@ -4,6 +4,9 @@ To do so we need a way to show the elements we want through a single eye at a ti
 For that we will reuse the following shader node structure(found in star_shader.tres) where we can set the ViewIndex parameter to 0,1 or any other number above 2. 0 and 1 each stand for one of the eyes and the rest of the numbers will show the item with the shader through both eyes.
 ![image](https://github.com/user-attachments/assets/42430926-f4a8-4a03-b44d-aca3ef57fd5f)
 
+Since most of what's to be done is particle related I suggest looking up the existing particles(most of them are inside the explosion.tscn scene) or checking a few of the resources I'll link here:
+https://www.youtube.com/watch?v=tjSxICUXMmM&t=96s
+
 
 ### TODO
 #### Work on the presentation(Due 13th)
