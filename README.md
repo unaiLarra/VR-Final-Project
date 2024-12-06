@@ -14,7 +14,7 @@ For that we will reuse the following shader node structure(found in star_shader.
 - Maybe tweak the keyframes in the animation node to make it better looking
 - Add a few literal impact frames by sampling the entire image and thresholding it to achive a look similar to animation impact frames(examples below)(Unai is looking into this)
 ![image](https://github.com/user-attachments/assets/6d535a42-5516-4d7d-8993-7482807d4ab2)
-![image](https://github.com/user-attachments/assets/97536b3e-775f-40ed-8f6a-885329b5a8e3)
+![](https://github.com/unaiLarra/VR-Final-Project/Assets/References/impact_frame.gif)
 
 #### Create eye-dependent weapon effects
 - Create muzzle-flash like effects for the weapons(there's only two of them so it shouldn't be much work) and experiment with making them eye dependant.
