@@ -5,7 +5,6 @@
 [ext_resource type="ArrayMesh" uid="uid://b0fyv8343kft0" path="res://Assets/Models/pistol/Usable Meshes/pistol_Cube_001.res" id="3_wrcmq"]
 [ext_resource type="Texture2D" uid="uid://cm2l4uwp11up0" path="res://Assets/Textures/sharp_circle.png" id="5_4yo62"]
 
-
 [sub_resource type="Animation" id="Animation_5pfxa"]
 length = 0.001
 tracks/0/type = "value"

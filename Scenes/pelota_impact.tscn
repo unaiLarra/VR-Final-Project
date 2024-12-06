@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://cm2l4uwp11up0" path="res://Assets/Textures/sharp_circle.png" id="2_muodv"]
 
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pn0bj"]
 transparency = 1
 cull_mode = 2

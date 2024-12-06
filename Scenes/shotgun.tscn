@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cm2l4uwp11up0" path="res://Assets/Textures/sharp_circle.png" id="4_pnd50"]
 [ext_resource type="Shader" path="res://Scenes/shotgun.gdshader" id="4_vi2jk"]
 
-
 [sub_resource type="Animation" id="Animation_5pfxa"]
 length = 0.001
 tracks/0/type = "value"

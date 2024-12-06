@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://don4bwbc1yvrr"]
+[gd_scene load_steps=55 format=3 uid="uid://don4bwbc1yvrr"]
 
 [ext_resource type="Material" uid="uid://cb0rmgfnrm2gu" path="res://Resources/star_particles.tres" id="1_5o327"]
 [ext_resource type="Shader" uid="uid://b8d8xkcl2qioi" path="res://Resources/star_shader.tres" id="1_w3wq0"]
@@ -379,7 +379,14 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_ndd17"]
 curve = SubResource("Curve_xwp1l")
 
+[sub_resource type="Curve" id="Curve_gv42k"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveTexture" id="CurveTexture_uv8xm"]
+curve = SubResource("Curve_gv42k")
 
 [sub_resource type="Curve" id="Curve_tmvjl"]
 min_value = -360.0
@@ -525,4 +532,5 @@ mesh = ExtResource("7_vvcxv")
 script = ExtResource("8_76c6p")
 
 [node name="FlashingLights" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("QuadMesh_5vvmr")
