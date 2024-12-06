@@ -5,7 +5,7 @@ For that we will reuse the following shader node structure(found in star_shader.
 ![image](https://github.com/user-attachments/assets/42430926-f4a8-4a03-b44d-aca3ef57fd5f)
 
 Since most of what's to be done is particle related I suggest looking up the existing particles(most of them are inside the explosion.tscn scene) or checking a few of the resources I'll link here:
-https://www.youtube.com/watch?v=tjSxICUXMmM&t=96s
+- https://www.youtube.com/watch?v=tjSxICUXMmM&t=96s
 
 
 ### TODO
