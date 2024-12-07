@@ -32,18 +32,13 @@ void fragment() {
 
 	// Visualize the outputs
 	// Screen texture
-	float avg = (screen.r + screen.g + screen.b) / 3.0;
+    float avg = (screen.r + screen.g + screen.b) / 3.0;
 	if (avg > threshold && threshold_active) {
 		avg = 1.0;
 	} else if (threshold_active) {
 		avg = 0.0;
 	}
-	if (threshold_active) {
-		ALBEDO.rgb = vec3(avg);
-	} else {
-		ALBEDO.rgb = screen.rgb;
-	}
-	
+	ALBEDO.rgb = vec3(avg);
 	// Raw depth
 	//ALBEDO.rgb = vec3(depth_raw);
 	// Linear depth
