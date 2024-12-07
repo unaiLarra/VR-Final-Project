@@ -10,7 +10,7 @@
 [sub_resource type="Resource" id="Resource_tqlbc"]
 script = ExtResource("5_6ge71")
 
-[node name="PickableObject" instance=ExtResource("1_eabhw")]
+[node name="PickableObject2" instance=ExtResource("1_eabhw")]
 continuous_cd = true
 
 [node name="Shotgun" parent="." index="0" instance=ExtResource("2_7guwn")]

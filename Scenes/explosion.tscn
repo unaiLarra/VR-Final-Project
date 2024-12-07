@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://don4bwbc1yvrr"]
+[gd_scene load_steps=56 format=3 uid="uid://don4bwbc1yvrr"]
 
 [ext_resource type="Material" uid="uid://cb0rmgfnrm2gu" path="res://Resources/star_particles.tres" id="1_5o327"]
 [ext_resource type="Shader" uid="uid://b8d8xkcl2qioi" path="res://Resources/star_shader.tres" id="1_w3wq0"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" uid="uid://bw36rdr0urilc" path="res://Scenes/distortion_ring.tres" id="7_5b4k2"]
 [ext_resource type="ArrayMesh" uid="uid://dugudee456dxx" path="res://Assets/Models/VFX/ring_Circle.res" id="7_vvcxv"]
 [ext_resource type="Script" path="res://Scripts/ring.gd" id="8_76c6p"]
+[ext_resource type="Shader" path="res://Resources/threshold.gdshader" id="10_xb8mb"]
 
 [sub_resource type="Animation" id="Animation_avwlj"]
 resource_name = "Explode"
@@ -118,6 +119,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [false, true, false]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("PostProcessing:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2.85, 2.925),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_bgv77"]
 length = 0.001
@@ -164,6 +177,18 @@ tracks/3/path = NodePath("DistortionRing:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PostProcessing:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -448,14 +473,15 @@ alpha_curve = SubResource("CurveTexture_ndd17")
 radius = 15.0
 height = 30.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qntrb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_axmuc"]
 render_priority = 0
-shader = ExtResource("1_w3wq0")
-shader_parameter/ViewIndex = 1
+shader = ExtResource("10_xb8mb")
+shader_parameter/threshold = 0.16
+shader_parameter/threshold_active = true
 
-[sub_resource type="QuadMesh" id="QuadMesh_5vvmr"]
-material = SubResource("ShaderMaterial_qntrb")
-size = Vector2(1000, 1000)
+[sub_resource type="QuadMesh" id="QuadMesh_af4ds"]
+flip_faces = true
+size = Vector2(2, 2)
 
 [node name="Explosion" type="Node3D"]
 script = ExtResource("1_xtn6p")
@@ -531,6 +557,8 @@ draw_pass_1 = SubResource("SphereMesh_snpqw")
 mesh = ExtResource("7_vvcxv")
 script = ExtResource("8_76c6p")
 
-[node name="FlashingLights" type="MeshInstance3D" parent="."]
+[node name="PostProcessing" type="MeshInstance3D" parent="."]
 visible = false
-mesh = SubResource("QuadMesh_5vvmr")
+material_overlay = SubResource("ShaderMaterial_axmuc")
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_af4ds")
