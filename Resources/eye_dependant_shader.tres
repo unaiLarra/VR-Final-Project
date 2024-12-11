@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=11 format=3 uid="uid://d1ccnsds4nyxc"]
+[gd_resource type="VisualShader" load_steps=9 format=3 uid="uid://d1ccnsds4nyxc"]
 
 [sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_0b4rk"]
 default_input_values = [0, 0, 1, 0, 2, 1]
@@ -7,19 +7,12 @@ op_type = 1
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_gisbu"]
 operator = 2
 
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_1106m"]
-expanded_output_ports = [0]
-input_name = "color"
-
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_b5ew6"]
 parameter_name = "Star_Texture"
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_6ydni"]
 expanded_output_ports = [0]
 source = 5
-
-[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_80jo7"]
-operator = 2
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_wrobq"]
 input_name = "view_index"
@@ -37,15 +30,16 @@ function = 0
 code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded;
 
-uniform int ViewIndex;
 uniform sampler2D Star_Texture;
+uniform int ViewIndex;
 
 
 
 void fragment() {
-// Input:2
-	vec4 n_out2p0 = COLOR;
-	float n_out2p4 = n_out2p0.a;
+	vec4 n_out4p0;
+// Texture2D:4
+	n_out4p0 = texture(Star_Texture, UV);
+	float n_out4p4 = n_out4p0.a;
 
 
 // IntParameter:7
@@ -70,38 +64,24 @@ void fragment() {
 	int n_out10p0 = clamp(n_out9p0, n_in10p1, n_in10p2);
 
 
-	vec4 n_out4p0;
-// Texture2D:4
-	n_out4p0 = texture(Star_Texture, UV);
-	float n_out4p1 = n_out4p0.r;
-
-
-// FloatOp:5
-	float n_out5p0 = n_out4p1 * n_out2p4;
-
-
 // FloatOp:11
-	float n_out11p0 = float(n_out10p0) * n_out5p0;
+	float n_out11p0 = float(n_out10p0) * n_out4p4;
 
 
 // Output:0
-	ALBEDO = vec3(n_out2p0.xyz);
+	ALBEDO = vec3(n_out4p0.xyz);
 	ALPHA = n_out11p0;
 
 
 }
 "
-graph_offset = Vector2(-666.654, -33.0277)
+graph_offset = Vector2(-516.374, -161.596)
 modes/cull = 2
 flags/unshaded = true
-nodes/fragment/2/node = SubResource("VisualShaderNodeInput_1106m")
-nodes/fragment/2/position = Vector2(-840, 20)
 nodes/fragment/3/node = SubResource("VisualShaderNodeTexture2DParameter_b5ew6")
-nodes/fragment/3/position = Vector2(-1160, 340)
+nodes/fragment/3/position = Vector2(-1160, 300)
 nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_6ydni")
-nodes/fragment/4/position = Vector2(-780, 340)
-nodes/fragment/5/node = SubResource("VisualShaderNodeFloatOp_80jo7")
-nodes/fragment/5/position = Vector2(-420, 360)
+nodes/fragment/4/position = Vector2(-780, 300)
 nodes/fragment/6/node = SubResource("VisualShaderNodeInput_wrobq")
 nodes/fragment/6/position = Vector2(-1120, 760)
 nodes/fragment/7/node = SubResource("VisualShaderNodeIntParameter_cu1mp")
@@ -114,4 +94,4 @@ nodes/fragment/10/node = SubResource("VisualShaderNodeClamp_0b4rk")
 nodes/fragment/10/position = Vector2(-340, 720)
 nodes/fragment/11/node = SubResource("VisualShaderNodeFloatOp_gisbu")
 nodes/fragment/11/position = Vector2(-120, 380)
-nodes/fragment/connections = PackedInt32Array(3, 0, 4, 2, 4, 1, 5, 0, 2, 4, 5, 1, 6, 0, 8, 1, 7, 0, 8, 0, 8, 0, 9, 0, 9, 0, 10, 0, 10, 0, 11, 0, 5, 0, 11, 1, 11, 0, 0, 1, 2, 0, 0, 0)
+nodes/fragment/connections = PackedInt32Array(3, 0, 4, 2, 6, 0, 8, 1, 7, 0, 8, 0, 8, 0, 9, 0, 9, 0, 10, 0, 10, 0, 11, 0, 11, 0, 0, 1, 4, 4, 11, 1, 4, 0, 0, 0)

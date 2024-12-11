@@ -107,7 +107,7 @@ tracks/4/keys = {
 tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("GPUParticles3D")
+tracks/5/path = NodePath("MuzzleFlash")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -157,6 +157,7 @@ direction = Vector3(0, 0, -1)
 spread = 20.0
 initial_velocity_min = 20.0
 initial_velocity_max = 25.0
+gravity = Vector3(0, 0, 0)
 scale_min = 0.1
 scale_max = 0.3
 scale_curve = SubResource("CurveXYZTexture_rx6jw")
@@ -176,11 +177,11 @@ shader = ExtResource("5_27ril")
 shader_parameter/ViewIndex = 2
 shader_parameter/Star_Texture = ExtResource("5_4yo62")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6flrp"]
-transparency = 1
-cull_mode = 2
-shading_mode = 0
-albedo_texture = ExtResource("6_jqj14")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yv70n"]
+render_priority = 0
+shader = ExtResource("5_27ril")
+shader_parameter/ViewIndex = 1
+shader_parameter/Star_Texture = ExtResource("6_jqj14")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l4kao"]
 gravity = Vector3(0, 0, 0)
@@ -245,9 +246,10 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_72377")
 draw_pass_1 = SubResource("QuadMesh_42mmq")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="MuzzleFlash" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0657399, -0.0985862)
-material_override = SubResource("StandardMaterial3D_6flrp")
+material_override = SubResource("ShaderMaterial_yv70n")
 emitting = false
 amount = 1
 lifetime = 0.07

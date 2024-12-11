@@ -13,6 +13,8 @@ func shoot() -> void:
 	var direction: Vector3 = %BulletOrigin.global_position - %ShootingOrigin.global_position
 	direction = direction.normalized()
 	SignalBus.shoot_projectile.emit(%BulletOrigin.global_position, direction * shot_velocity, bullet)
+	%MuzzleFlash.material_override.set_shader_parameter('View Index',randi_range(0,1))
+	print(%MuzzleFlash.material_override.get_shader_parameter('View Index'))
 	%AnimationPlayer.play("Shoot")
 
 func _on_pickable_object_action_pressed(pickable: Variant) -> void:
