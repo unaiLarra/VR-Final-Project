@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://b3lv81bp2w3p"]
+[gd_scene load_steps=22 format=3 uid="uid://b3lv81bp2w3p"]
 
 [ext_resource type="Script" path="res://Scripts/shotgun.gd" id="1_62rpc"]
 [ext_resource type="PackedScene" uid="uid://dli43ddpmgo0b" path="res://Scenes/shot.tscn" id="2_gpfsw"]
 [ext_resource type="ArrayMesh" uid="uid://b0fyv8343kft0" path="res://Assets/Models/pistol/Usable Meshes/pistol_Cube_001.res" id="3_wrcmq"]
 [ext_resource type="Texture2D" uid="uid://cm2l4uwp11up0" path="res://Assets/Textures/sharp_circle.png" id="5_4yo62"]
 [ext_resource type="Shader" uid="uid://d1ccnsds4nyxc" path="res://Resources/eye_dependant_shader.tres" id="5_27ril"]
+[ext_resource type="Texture2D" uid="uid://bg84m08xoshwq" path="res://Assets/Textures/muzzle_flash.png" id="6_jqj14"]
 
 [sub_resource type="Animation" id="Animation_5pfxa"]
 length = 0.001
@@ -35,7 +36,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_b3i7i"]
 resource_name = "Shoot"
-length = 0.17
+length = 0.12
 step = 0.0125
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -44,7 +45,7 @@ tracks/0/path = NodePath("MeshInstance3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0375, 0.1625),
+"times": PackedFloat32Array(0, 0.0375, 0.119875),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0.018009, 0.0207693), Vector3(0, 0.018009, 0.0207693), Vector3(0, 0, 0)]
@@ -56,10 +57,66 @@ tracks/1/path = NodePath("MeshInstance3D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0375, 0.1625),
+"times": PackedFloat32Array(0, 0.0375, 0.119875),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0.19162, 0, 0), Vector3(0.19162, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles3DLeft")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"restart"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticles3DRight")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"restart"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GPUParticles3DBoth")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"restart"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GPUParticles3D")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"restart"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8v8mg"]
@@ -68,10 +125,10 @@ _data = {
 "Shoot": SubResource("Animation_b3i7i")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xljpp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_26sbw"]
 render_priority = 0
 shader = ExtResource("5_27ril")
-shader_parameter/ViewIndex = 1
+shader_parameter/ViewIndex = 0
 shader_parameter/Star_Texture = ExtResource("5_4yo62")
 
 [sub_resource type="Curve" id="Curve_my52j"]
@@ -107,6 +164,30 @@ color = Color(3, 1.5, 1, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_42mmq"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_loe4b"]
+render_priority = 0
+shader = ExtResource("5_27ril")
+shader_parameter/ViewIndex = 1
+shader_parameter/Star_Texture = ExtResource("5_4yo62")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xljpp"]
+render_priority = 0
+shader = ExtResource("5_27ril")
+shader_parameter/ViewIndex = 2
+shader_parameter/Star_Texture = ExtResource("5_4yo62")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6flrp"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("6_jqj14")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l4kao"]
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_glax6"]
+size = Vector2(0.5, 0.5)
+
 [node name="Shotgun" type="Node3D"]
 script = ExtResource("1_62rpc")
 bullet = ExtResource("2_gpfsw")
@@ -130,11 +211,10 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0689661, 0.0852338)
 
 [node name="GPUParticles3DLeft" type="GPUParticles3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 5.96046e-08, 0.0654328, -0.149352)
-material_override = SubResource("ShaderMaterial_xljpp")
+material_override = SubResource("ShaderMaterial_26sbw")
 emitting = false
-amount = 12
+amount = 4
 lifetime = 0.35
 one_shot = true
 explosiveness = 1.0
@@ -143,11 +223,10 @@ process_material = SubResource("ParticleProcessMaterial_72377")
 draw_pass_1 = SubResource("QuadMesh_42mmq")
 
 [node name="GPUParticles3DRight" type="GPUParticles3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 5.96046e-08, 0.0654328, -0.149352)
-material_override = SubResource("ShaderMaterial_xljpp")
+material_override = SubResource("ShaderMaterial_loe4b")
 emitting = false
-amount = 12
+amount = 4
 lifetime = 0.35
 one_shot = true
 explosiveness = 1.0
@@ -156,14 +235,23 @@ process_material = SubResource("ParticleProcessMaterial_72377")
 draw_pass_1 = SubResource("QuadMesh_42mmq")
 
 [node name="GPUParticles3DBoth" type="GPUParticles3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 5.96046e-08, 0.0654328, -0.149352)
 material_override = SubResource("ShaderMaterial_xljpp")
 emitting = false
-amount = 12
 lifetime = 0.35
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_72377")
 draw_pass_1 = SubResource("QuadMesh_42mmq")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0657399, -0.0985862)
+material_override = SubResource("StandardMaterial3D_6flrp")
+emitting = false
+amount = 1
+lifetime = 0.07
+one_shot = true
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_l4kao")
+draw_pass_1 = SubResource("QuadMesh_glax6")

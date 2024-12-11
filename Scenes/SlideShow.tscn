@@ -142,7 +142,7 @@ theme_override_font_sizes/normal_font_size = 35
 theme_override_font_sizes/bold_font_size = 50
 bbcode_enabled = true
 text = "[b][color=000000][color=FF0000]INSPIRATION[/color][/color][/b]
-[color=000000]This idea of high contrast short duration frames is often used in traditional animation[/color]"
+[color=000000]This idea of high contrast short duration frames(impact frames) is often used in traditional animation[/color]"
 
 [node name="TextureRect" type="TextureRect" parent="Slide2/ColorRect/HBoxContainer"]
 layout_mode = 2
@@ -190,7 +190,7 @@ theme_override_font_sizes/normal_font_size = 35
 theme_override_font_sizes/bold_font_size = 50
 bbcode_enabled = true
 text = "[b][color=000000]OUR [color=FF0000]GOAL[/color][/color][/b]
-[color=000000]Test if we can achieve a similar effect 2D animation perfects while avoiding the sickness of VR eye-mismatch[/color]"
+[color=000000]Test if we can achieve a similar effect 2D animation conveys while avoiding the sickness of VR eye-mismatch[/color]"
 
 [node name="TextureRect" type="TextureRect" parent="Slide3/ColorRect/HBoxContainer"]
 layout_mode = 2
