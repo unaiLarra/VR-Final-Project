@@ -21,4 +21,6 @@ func _on_body_entered(body: Node) -> void:
 		body.apply_central_impulse(last_velocity)
 	elif body is ExplosionTest:
 		body.explode()
+	elif body is SlideShowControl:
+		body.perform_action()
 	queue_free()

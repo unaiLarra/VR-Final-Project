@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bv3q4qx2vsd4u"]
+[gd_scene load_steps=31 format=3 uid="uid://bv3q4qx2vsd4u"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_oacss"]
 [ext_resource type="Material" uid="uid://bx6qeabdhq2s" path="res://addons/kenney_prototype_tools/materials/dark/material_01.tres" id="1_v7lbm"]
@@ -14,6 +14,10 @@
 [ext_resource type="Script" path="res://Scripts/explosion_test.gd" id="12_6frd4"]
 [ext_resource type="Shader" path="res://Resources/vr_test.gdshader" id="12_sn0em"]
 [ext_resource type="PackedScene" uid="uid://don4bwbc1yvrr" path="res://Scenes/explosion.tscn" id="13_gcbqi"]
+[ext_resource type="PackedScene" uid="uid://cg8uutdj76byx" path="res://Scenes/SlideShow.tscn" id="15_1boji"]
+[ext_resource type="Script" path="res://Scripts/slide_show_mesh.gd" id="15_p7awm"]
+[ext_resource type="FontFile" uid="uid://cmqo56wcxp5k0" path="res://Assets/IBM mono/IBMPlexMono-Bold.ttf" id="16_jh5es"]
+[ext_resource type="Script" path="res://Scripts/slide_show_control.gd" id="16_tdfif"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bnwfv"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -40,6 +44,29 @@ shader = ExtResource("12_sn0em")
 
 [sub_resource type="BoxMesh" id="BoxMesh_i8al8"]
 material = SubResource("ShaderMaterial_v3nn5")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8hu7t"]
+viewport_path = NodePath("SlideShow/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ghmpe"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_8hu7t")
+
+[sub_resource type="QuadMesh" id="QuadMesh_l8bws"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ghmpe")
+size = Vector2(11.2, 6.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pkca2"]
+size = Vector3(1.93835, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0eyqv"]
+shading_mode = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_lkrwy"]
+material = SubResource("StandardMaterial3D_0eyqv")
+size = Vector3(1.93835, 1, 1)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_oacss")
@@ -128,3 +155,52 @@ shape = SubResource("ConcavePolygonShape3D_ljq1c")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35227, -2.70398)
 mesh = SubResource("BoxMesh_i8al8")
 skeleton = NodePath("../..")
+
+[node name="SlideShow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.973066, -0.230525, 0, 0.230525, 0.973066, 0, 5.95037, 0)
+mesh = SubResource("QuadMesh_l8bws")
+script = ExtResource("15_p7awm")
+
+[node name="SubViewport" type="SubViewport" parent="SlideShow"]
+size = Vector2i(1152, 648)
+
+[node name="SlideShow" parent="SlideShow/SubViewport" instance=ExtResource("15_1boji")]
+active_slide = 0
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="SlideShow"]
+transform = Transform3D(1, 0, 0, 0, 0.973066, 0.230525, 0, -0.230525, 0.973066, 1.92887, -3.88833, 0.537932)
+script = ExtResource("16_tdfif")
+action = "Next"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SlideShow/StaticBody3D2"]
+shape = SubResource("BoxShape3D_pkca2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SlideShow/StaticBody3D2"]
+mesh = SubResource("BoxMesh_lkrwy")
+
+[node name="Label3D" type="Label3D" parent="SlideShow/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5698)
+modulate = Color(0, 0, 0, 1)
+text = "Next Frame"
+font = ExtResource("16_jh5es")
+font_size = 72
+outline_size = 2
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="SlideShow"]
+transform = Transform3D(1, 0, 0, 0, 0.973066, 0.230525, 0, -0.230525, 0.973066, -2.07113, -3.88833, 0.537932)
+script = ExtResource("16_tdfif")
+action = "Previous"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SlideShow/StaticBody3D3"]
+shape = SubResource("BoxShape3D_pkca2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SlideShow/StaticBody3D3"]
+mesh = SubResource("BoxMesh_lkrwy")
+
+[node name="Label3D" type="Label3D" parent="SlideShow/StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5698)
+modulate = Color(0, 0, 0, 1)
+text = "Previous Frame"
+font = ExtResource("16_jh5es")
+font_size = 72
+outline_size = 2
