@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://don4bwbc1yvrr"]
+[gd_scene load_steps=54 format=3 uid="uid://don4bwbc1yvrr"]
 
 [ext_resource type="Material" uid="uid://cb0rmgfnrm2gu" path="res://Resources/star_particles.tres" id="1_5o327"]
 [ext_resource type="Shader" uid="uid://b8d8xkcl2qioi" path="res://Resources/star_shader.tres" id="1_w3wq0"]
@@ -126,7 +126,7 @@ tracks/8/path = NodePath("PostProcessing:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(2.85, 2.925),
+"times": PackedFloat32Array(2.85, 2.95),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -138,12 +138,24 @@ tracks/9/path = NodePath(".")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(2.875),
+"times": PackedFloat32Array(2.85),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"frame_freeze"
 }]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("PostProcessing:material_overlay:shader_parameter/viewport_index")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(2.85, 2.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
 }
 
 [sub_resource type="Animation" id="Animation_bgv77"]
@@ -207,6 +219,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PostProcessing:material_overlay:shader_parameter/viewport_index")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_qacbf"]
@@ -412,7 +436,7 @@ radial_segments = 128
 rings = 64
 
 [sub_resource type="Curve" id="Curve_xwp1l"]
-_data = [Vector2(0.791165, 0), 0.0, 0.0, 0, 0, Vector2(0.994475, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.299559, 0), 0.0, 3.74176, 0, 0, Vector2(0.994475, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_ndd17"]
@@ -437,29 +461,20 @@ point_count = 2
 curve = SubResource("Curve_tmvjl")
 
 [sub_resource type="Gradient" id="Gradient_f80yy"]
-offsets = PackedFloat32Array(0.158371, 0.294118)
+offsets = PackedFloat32Array(0.120603, 0.256281)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_cykxb"]
 gradient = SubResource("Gradient_f80yy")
 
-[sub_resource type="Curve" id="Curve_mhdgy"]
-min_value = -2.0
-max_value = 2.0
-_data = [Vector2(0, 1.6044), 0.0, 0.0, 0, 0, Vector2(0.569061, 0.0659342), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_gu2aa"]
-curve = SubResource("Curve_mhdgy")
-
 [sub_resource type="Curve" id="Curve_beudk"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.184739, 0.166948), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.092511, 0.142857), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_86del"]
 curve = SubResource("Curve_beudk")
 
 [sub_resource type="Curve" id="Curve_w1icf"]
-_data = [Vector2(0, 0.0463744), 0.0, 9.82563, 0, 0, Vector2(0.140562, 1), 0.629848, 0.629848, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.0463744), 0.0, 9.82563, 0, 0, Vector2(0.0528634, 1), 0.629848, 0.629848, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_ipx5q"]
@@ -467,12 +482,11 @@ curve = SubResource("Curve_w1icf")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2x3yu"]
 emission_shape = 1
-emission_sphere_radius = 10.0
+emission_sphere_radius = 5.0
 angle_min = -45.0
 angle_max = 45.0
 angle_curve = SubResource("CurveTexture_uv8xm")
 angular_velocity_curve = SubResource("CurveTexture_t665l")
-orbit_velocity_curve = SubResource("CurveTexture_gu2aa")
 radial_velocity_min = 50.0
 radial_velocity_max = 60.0
 radial_velocity_curve = SubResource("CurveTexture_86del")
@@ -492,6 +506,7 @@ render_priority = 0
 shader = ExtResource("10_xb8mb")
 shader_parameter/threshold = 0.16
 shader_parameter/threshold_active = true
+shader_parameter/viewport_index = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_af4ds"]
 flip_faces = true
@@ -500,7 +515,7 @@ size = Vector2(2, 2)
 [node name="Explosion" type="Node3D"]
 script = ExtResource("1_xtn6p")
 time_scale = 0.1
-duration = 0.3
+duration = 0.25
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -558,11 +573,11 @@ mesh = SubResource("SphereMesh_j80s2")
 skeleton = NodePath("")
 
 [node name="Explosion" type="GPUParticles3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(0.182236, 0, 0.983255, 0, 1, 0, -0.983255, 0, 0.182236, 0, 0, 0)
 material_override = ExtResource("6_00oic")
 emitting = false
 amount = 5
-lifetime = 1.8
+lifetime = 3.0
 one_shot = true
 explosiveness = 0.8
 fixed_fps = 60
