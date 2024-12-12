@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://Scripts/fps_controller.gd" id="1_re5c7"]
 [ext_resource type="PackedScene" uid="uid://b3lv81bp2w3p" path="res://Scenes/pistol.tscn" id="2_bt20x"]
 [ext_resource type="Script" path="res://Scenes/footsteps.gd" id="3_1mekg"]
-[ext_resource type="AudioStream" uid="uid://diuqj0dx75kju" path="res://addons/kenney impact sounds/footstep_concrete_000.ogg" id="4_1jixy"]
-[ext_resource type="AudioStream" uid="uid://dw0crbotgc61p" path="res://addons/kenney impact sounds/footstep_concrete_001.ogg" id="5_rrks3"]
-[ext_resource type="AudioStream" uid="uid://bix7avqjdl0bp" path="res://addons/kenney impact sounds/footstep_concrete_002.ogg" id="6_3nnw3"]
+[ext_resource type="AudioStream" uid="uid://diuqj0dx75kju" path="res://SFX/footstep_concrete_000.ogg" id="4_1jixy"]
+[ext_resource type="AudioStream" uid="uid://dw0crbotgc61p" path="res://SFX/footstep_concrete_001.ogg" id="5_rrks3"]
+[ext_resource type="AudioStream" uid="uid://bix7avqjdl0bp" path="res://SFX/footstep_concrete_002.ogg" id="6_3nnw3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ns2d4"]
 
