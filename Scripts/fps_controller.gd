@@ -3,6 +3,7 @@ extends CharacterBody3D
 @export var mouse_sensitivity: float = 0
 @export var SPEED = 5.0
 @export var JUMP_VELOCITY = 4.5
+@export var footstep_rate = 0.2
 
 func _ready() -> void:
 	pass # Replace with function body.
@@ -19,10 +20,10 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
+		step_sfx()
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
 	move_and_slide()
 
 	if Input.is_action_just_pressed("right_click"):
@@ -31,6 +32,11 @@ func _physics_process(delta: float) -> void:
 		%AnimationPlayer.play_backwards("ADS")
 	if Input.is_action_just_pressed("left_click"):
 		%Weapons.get_child(0).shoot()
+
+func step_sfx() -> void:
+	if $Timer.time_left <= 0 and is_on_floor():
+		$XPivot/Footsteps.play_step()
+		$Timer.start(footstep_rate)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

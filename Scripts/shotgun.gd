@@ -16,6 +16,7 @@ func shoot() -> void:
 	%MuzzleFlash.material_override.set_shader_parameter('View Index',randi_range(0,1))
 	print(%MuzzleFlash.material_override.get_shader_parameter('View Index'))
 	%AnimationPlayer.play("Shoot")
+	$Gunshot.play()
 
 func _on_pickable_object_action_pressed(pickable: Variant) -> void:
 	shoot()

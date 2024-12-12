@@ -5,7 +5,10 @@ extends Node3D
 
 func explode() -> void:
 	%AnimationPlayer.play("Explode")
-
+	$WindUp.play()
+	await get_tree().create_timer(2.0).timeout
+	$Boom.play()
+	
 func frame_freeze() -> void:
 	Engine.time_scale = time_scale
 	await  get_tree().create_timer(duration*time_scale).timeout

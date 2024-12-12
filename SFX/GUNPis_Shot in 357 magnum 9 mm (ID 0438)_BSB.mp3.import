@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://daeddvvsrhaem"
+path="res://.godot/imported/GUNPis_Shot in 357 magnum 9 mm (ID 0438)_BSB.mp3-0f2c129099996053a2a263de300c3301.mp3str"
+
+[deps]
+
+source_file="res://SFX/GUNPis_Shot in 357 magnum 9 mm (ID 0438)_BSB.mp3"
+dest_files=["res://.godot/imported/GUNPis_Shot in 357 magnum 9 mm (ID 0438)_BSB.mp3-0f2c129099996053a2a263de300c3301.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

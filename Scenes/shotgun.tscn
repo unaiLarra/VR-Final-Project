@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://dsvknykpav38t"]
+[gd_scene load_steps=19 format=3 uid="uid://dsvknykpav38t"]
 
 [ext_resource type="Script" path="res://Scripts/shotgun.gd" id="1_025rv"]
 [ext_resource type="PackedScene" uid="uid://dli43ddpmgo0b" path="res://Scenes/shot.tscn" id="2_7sxvm"]
 [ext_resource type="ArrayMesh" uid="uid://vtjliblqogef" path="res://Assets/Models/shotgun/Usable Meshes/escopeta_Cube_002.res" id="2_11xgw"]
 [ext_resource type="Texture2D" uid="uid://cm2l4uwp11up0" path="res://Assets/Textures/sharp_circle.png" id="4_pnd50"]
 [ext_resource type="Shader" path="res://Scenes/shotgun.gdshader" id="4_vi2jk"]
+[ext_resource type="AudioStream" uid="uid://daeddvvsrhaem" path="res://SFX/GUNPis_Shot in 357 magnum 9 mm (ID 0438)_BSB.mp3" id="6_kyv20"]
 
 [sub_resource type="Animation" id="Animation_5pfxa"]
 length = 0.001
@@ -195,3 +196,7 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_72377")
 draw_pass_1 = SubResource("QuadMesh_42mmq")
+
+[node name="Gunshot" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.101342, -0.727038)
+stream = ExtResource("6_kyv20")

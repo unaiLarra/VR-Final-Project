@@ -1,7 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://imyocjyp22p2"]
+[gd_scene load_steps=12 format=3 uid="uid://imyocjyp22p2"]
 
 [ext_resource type="Script" path="res://Scripts/fps_controller.gd" id="1_re5c7"]
 [ext_resource type="PackedScene" uid="uid://b3lv81bp2w3p" path="res://Scenes/pistol.tscn" id="2_bt20x"]
+[ext_resource type="Script" path="res://Scenes/footsteps.gd" id="3_1mekg"]
+[ext_resource type="AudioStream" uid="uid://diuqj0dx75kju" path="res://addons/kenney impact sounds/footstep_concrete_000.ogg" id="4_1jixy"]
+[ext_resource type="AudioStream" uid="uid://dw0crbotgc61p" path="res://addons/kenney impact sounds/footstep_concrete_001.ogg" id="5_rrks3"]
+[ext_resource type="AudioStream" uid="uid://bix7avqjdl0bp" path="res://addons/kenney impact sounds/footstep_concrete_002.ogg" id="6_3nnw3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ns2d4"]
 
@@ -74,6 +78,7 @@ collision_layer = 0
 collision_mask = 3
 script = ExtResource("1_re5c7")
 mouse_sensitivity = 0.2
+footstep_rate = 0.4
 
 [node name="XPivot" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -89,6 +94,19 @@ unique_name_in_owner = true
 [node name="Shotgun2" parent="XPivot/Weapons" instance=ExtResource("2_bt20x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.145, 0.413, -0.286)
 
+[node name="Footsteps" type="Node3D" parent="XPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.913321, 0)
+script = ExtResource("3_1mekg")
+
+[node name="StepSound0" type="AudioStreamPlayer3D" parent="XPivot/Footsteps"]
+stream = ExtResource("4_1jixy")
+
+[node name="StepSound1" type="AudioStreamPlayer3D" parent="XPivot/Footsteps"]
+stream = ExtResource("5_rrks3")
+
+[node name="StepSound2" type="AudioStreamPlayer3D" parent="XPivot/Footsteps"]
+stream = ExtResource("6_3nnw3")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
 mesh = SubResource("CapsuleMesh_ns2d4")
@@ -101,3 +119,6 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_57vp1")
 }
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

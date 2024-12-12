@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://don4bwbc1yvrr"]
+[gd_scene load_steps=56 format=3 uid="uid://don4bwbc1yvrr"]
 
 [ext_resource type="Material" uid="uid://cb0rmgfnrm2gu" path="res://Resources/star_particles.tres" id="1_5o327"]
 [ext_resource type="Shader" uid="uid://b8d8xkcl2qioi" path="res://Resources/star_shader.tres" id="1_w3wq0"]
@@ -10,6 +10,8 @@
 [ext_resource type="ArrayMesh" uid="uid://dugudee456dxx" path="res://Assets/Models/VFX/ring_Circle.res" id="7_vvcxv"]
 [ext_resource type="Script" path="res://Scripts/ring.gd" id="8_76c6p"]
 [ext_resource type="Shader" path="res://Resources/threshold.gdshader" id="10_xb8mb"]
+[ext_resource type="AudioStream" uid="uid://hnfq1ixcrrqn" path="res://SFX/metal-design-explosion-13491.mp3" id="11_t4sw5"]
+[ext_resource type="AudioStream" uid="uid://5bln1iibfl" path="res://SFX/explosion-80108.mp3" id="12_boayj"]
 
 [sub_resource type="Animation" id="Animation_avwlj"]
 resource_name = "Explode"
@@ -593,3 +595,10 @@ visible = false
 material_overlay = SubResource("ShaderMaterial_axmuc")
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_af4ds")
+
+[node name="WindUp" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("11_t4sw5")
+
+[node name="Boom" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("12_boayj")
+volume_db = 3.048
